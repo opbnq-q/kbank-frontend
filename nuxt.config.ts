@@ -1,19 +1,59 @@
 import tailwindcss from "@tailwindcss/vite";
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
-  modules: [
-    '@nuxt/fonts',
-    '@nuxt/image',
-    '@nuxt/icon',
-    '@nuxtjs/i18n',
-    '@nuxtjs/color-mode'
-  ],
-  pages: true,
-  vite: {
-    plugins: [tailwindcss()]
-  },
-  css: ["public/main.css"]
-})
+    compatibilityDate: '2024-11-01',
+    devtools: { enabled: true },
+    modules: [
+        '@nuxt/fonts',
+        '@nuxt/image',
+        '@nuxt/icon',
+        '@nuxtjs/i18n'
+    ],
+    pages: true,
+    typescript: {
+        strict: true
+    },
+    vite: {
+        plugins: [tailwindcss()]
+    },
+    css: ["public/main.css"],
+    components: [
+        {
+            path: 'shared',
+            extensions: ['.vue'],
+            prefix: 'Shared',
+            pathPrefix: false
+        },
+        {
+            path: 'features',
+            extensions: ['.vue'],
+            pathPrefix: false,
+            prefix: 'Feature'
+        },
+        {
+            path: 'widgets',
+            pathPrefix: false,
+            extensions: ['.vue'],
+            prefix: 'Widget'
+        },
+        {
+            path: 'entities',
+            extensions: ['.vue'],
+            pathPrefix: false,
+            prefix: 'Entity'
+        }
+    ],
+    imports: {
+        dirs: [
+            'shared/**/*.ts',
+            'features/**/*.ts',
+            'widgets/**/*.ts',
+            'entities/**/*.ts'
+        ]
+    },
+    runtimeConfig: {
+        public: {
+            apiHost: process.env.API_HOST
+        }
+    }
+});
