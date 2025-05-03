@@ -1,0 +1,19 @@
+{
+    "register": {
+        "email": "Email",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "birthday": "Birthday",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "submit": "Submit",
+        "errors": {
+            "invalidEmail": "Invalid email format",
+            "invalidFirstName": "First name must be 5-30 characters (letters only)",
+            "invalidLastName": "Last name must be 5-30 characters (letters only)",
+            "invalidBirthday": "Birthday must be in the past",
+            "invalidPassword": "Password must be 8-16 characters",
+            "passwordMismatch": "Passwords do not match"
+        }
+    }
+}

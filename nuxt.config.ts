@@ -3,12 +3,16 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
-    modules: [
-        '@nuxt/fonts',
-        '@nuxt/image',
-        '@nuxt/icon',
-        '@nuxtjs/i18n'
-    ],
+    modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/icon', '@nuxtjs/i18n', '@pinia/nuxt'],
+    i18n: {
+        locales: [
+            { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+            { code: 'ru', language: 'ru-RU', file: 'ru.json', name: 'Русский' }
+        ],
+        defaultLocale: 'en',
+        lazy: true,
+        langDir: 'locales/',
+    },
     pages: true,
     typescript: {
         strict: true
@@ -55,5 +59,6 @@ export default defineNuxtConfig({
         public: {
             apiHost: process.env.API_HOST
         }
-    }
+    },
+
 });

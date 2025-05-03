@@ -1,0 +1,19 @@
+{
+    "register": {
+        "email": "Email",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "birthday": "День рождения",
+        "password": "Пароль",
+        "confirmPassword": "Подтвердите пароль",
+        "submit": "Отправить",
+        "errors": {
+            "invalidEmail": "Неверный формат email",
+            "invalidFirstName": "Имя должно содержать от 5 до 30 символов (только буквы)",
+            "invalidLastName": "Фамилия должна содержать от 5 до 30 символов (только буквы)",
+            "invalidBirthday": "Дата рождения должна быть в прошлом",
+            "invalidPassword": "Пароль должен содержать от 8 до 16 символов",
+            "passwordMismatch": "Пароли не совпадают"
+        }
+    }
+}

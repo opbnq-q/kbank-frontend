@@ -13,7 +13,7 @@
     :root {
         --color-primary-bg: #131313;
         --color-secondary-bg: #191919;
-        --color-primary-text: #d7d7d7;
+        --color-primary-text: #d9d9d9;
         --color-primary-border: oklch(37.1% 0 0);
         --color-primary-focus: oklch(27.4% 0.006 286.033);
         --color-primary-hover: oklch(27.4% 0.006 286.033);
