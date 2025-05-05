@@ -1,3 +1,3 @@
 <template>
-    <NuxtImg src="/logo.png" width="240" class="shadow-black shadow-2xl"></NuxtImg>
+    <img src="~/public/logo.png" alt="logo" width="240" class="shadow-black shadow-2xl"></img>
 </template>

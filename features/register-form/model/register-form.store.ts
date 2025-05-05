@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { I18nGetter } from '~/shared/types/i18n.getter.type'
 import { registerApi } from '../api/register.api'
-import type { RegisterData } from '../types/register-data.type'
+import { isEmail } from '~/shared/utils/is-email.util'
 
 export interface RegisterFormState {
     email: string
@@ -16,10 +16,6 @@ export interface RegisterFormState {
         password: string
         confirmPassword: string
     }
-}
-
-function isEmail(value: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
 
 export const useRegisterFormStore = defineStore('register-form-store', {
