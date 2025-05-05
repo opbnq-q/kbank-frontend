@@ -1,6 +1,5 @@
 <template>
-    <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="registerStore.validateForm(t)
-        ">
+    <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="registerStore.submit(t)">
         <SharedBaseInput label="email" type="email" :placeholder="t('register.email')" v-model="registerStore.email"
             :error="registerStore.errors.email" />
         <SharedBaseInput label="firstName" :placeholder="t('register.firstName')" v-model="registerStore.firstName"

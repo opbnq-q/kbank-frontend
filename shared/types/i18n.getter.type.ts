@@ -1,0 +1,1 @@
+export type I18nGetter = (key: string) => string

@@ -57,8 +57,7 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiHost: process.env.API_HOST
+            apiBase: process.env.API_HOST
         }
-    },
-
+    }
 });
