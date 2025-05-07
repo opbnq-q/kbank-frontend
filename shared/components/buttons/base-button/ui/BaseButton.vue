@@ -3,7 +3,7 @@
         border-[1px] border-primary-border transition 
         hover:bg-primary-hover active:bg-secondary-bg 
         active:scale-90
-        cursor-pointer`, {'h-10 font-bold': large}]">
+        cursor-pointer flex items-center justify-center`, { 'h-10 font-bold': large }]">
         <slot></slot>
     </button>
 </template>
@@ -11,5 +11,6 @@
 <script setup lang="ts">
 defineProps<{
     large?: boolean
+    square?: boolean
 }>()
 </script>
