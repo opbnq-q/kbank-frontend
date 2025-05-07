@@ -24,5 +24,10 @@
         },
         "submit": "Submit",
         "changeLoginMode": "Register"
-    }
+    },
+    "error": {
+        "header": "Sorry! Something went wrong"
+    },
+    "linkToMain": "Go home",
+    "backLink": "Go back"
 }

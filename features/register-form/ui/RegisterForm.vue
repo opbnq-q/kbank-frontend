@@ -11,9 +11,8 @@
         <SharedBaseInput label="confirmPassword" type="password" :placeholder="t('register.confirmPassword')"
             v-model="registerStore.confirmPassword" :error="registerStore.errors.confirmPassword" />
         <SharedBaseButton large type="submit">{{ t('register.submit') }}</SharedBaseButton>
-        <button type="button"
-            class="text-primary-link text-start relative bottom-4 text-sm cursor-pointer transition hover:text-blue-400"
-            @click="emits('bottomButton')">{{ t('register.changeLoginMode') }}</button>
+        <SharedInternalLink 
+            @click="emits('bottomButton')">{{ t('register.changeLoginMode') }}</SharedInternalLink>
     </form>
 </template>
 
