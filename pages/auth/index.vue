@@ -1,8 +1,11 @@
 <template>
-  <WidgetAuthForm></WidgetAuthForm>
+  <div>
+    <WidgetAuthForm></WidgetAuthForm>
+  </div>
 </template>
 
 <script lang="ts" setup>
+
 </script>
 
 <style></style>

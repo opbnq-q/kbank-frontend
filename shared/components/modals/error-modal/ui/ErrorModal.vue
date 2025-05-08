@@ -1,5 +1,5 @@
 <template>
-  <SharedBaseModal v-model:show="errorModal.show" :header="t('error.header')">
+  <SharedBaseModal class="z-50" v-model:show="errorModal.show" :header="t('error.header')">
     <p>{{ errorModal.message }}</p>
   </SharedBaseModal>
 </template>

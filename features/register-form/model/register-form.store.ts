@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
-import type { I18nGetter } from '~/shared/types/i18n.getter.type'
+import type { I18nGetter } from '~/shared/types/i18n-getter.type'
 import { registerApi } from '../api/register.api'
 import { isEmail } from '~/shared/utils/is-email.util'
+import { TokenManager } from '~/shared/lib/token-manager.lib'
 
 export interface RegisterFormState {
     email: string
@@ -76,15 +77,21 @@ export const useRegisterFormStore = defineStore('register-form-store', {
                 this.errors.confirmPassword = t('register.errors.passwordMismatch')
             }
         },
-        submit(t: I18nGetter) {
+        async submit(t: I18nGetter) {
             this.validateForm(t)
             if (Object.values(this.errors).some(v => !!v)) return;
-            return registerApi({
+            const result = await registerApi<{data: string}>({
                 email: this.email,
                 firstName: this.firstName,
                 lastName: this.lastName,
                 password: this.password
             })
+            if (!result) return;
+            if (result.status == 'success') {
+                console.log(result)
+                await TokenManager.set(result.data.data)
+                return navigateTo('/')
+            }
         }
     }
 })

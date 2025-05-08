@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { isEmail } from '~/shared/utils/is-email.util'
 import { loginApi } from '../api/login.api'
+import { TokenManager } from '~/shared/lib/token-manager.lib'
 
 export interface LoginFormState {
     email: string
@@ -40,13 +41,18 @@ export const useLoginFormStore = defineStore('login-form-store', {
                 this.errors.password = t('register.errors.invalidPassword')
             }
         },
-        submit(t: I18nGetter) {
+        async submit(t: I18nGetter) {
             this.validateForm(t)
             if (Object.values(this.errors).some(v => !!v)) return;
-            return loginApi({
+            const result = await loginApi<{data: string}>({
                 email: this.email,
                 password: this.password
             })
+            if (!result) return;
+            if (result.status == 'success') {
+                await TokenManager.set(result.data.data)
+                return navigateTo('/')
+            }
         }
     }
 })

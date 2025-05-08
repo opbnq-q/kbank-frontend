@@ -1,8 +1,6 @@
 <template>
   <div>
-    <ClientOnly>
-      <SharedErrorModal></SharedErrorModal>
-    </ClientOnly>
+    <SharedErrorModal></SharedErrorModal>
     <slot></slot>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="loginStore.submit(t)">
+        <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="loginStore.submit(t)">
         <SharedBaseInput label="email" type="email" :placeholder="t('login.email')" v-model="loginStore.email"
             :error="loginStore.errors.email" />
         <SharedBaseInput label="password" type="password" :placeholder="t('login.password')"
@@ -12,9 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useLoginFormStore } from '../model/login-form.store';
-
 const { t } = useI18n()
 const loginStore = useLoginFormStore()
 

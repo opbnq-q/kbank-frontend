@@ -1,13 +1,18 @@
+import type { ServerResponseTemplate } from "~/shared/types/server-response-template.type"
 import type { RegisterData } from "../types/register-data.type"
 
-export const registerApi = async (data: RegisterData) => {
+export const registerApi = async <T=unknown>(data: RegisterData) => {
     const { $ofetch } = useNuxtApp()
+    const errorModal = useErrorModal()
 
-    const result = await $ofetch('/auth/register', {
-        method: 'POST',
-        body: data
-    })
+    try {
+        const result = await $ofetch<ServerResponseTemplate<T>>('/auth/register', {
+            method: 'POST',
+            body: data
+        })
+        return result
+    } catch(e) {
+        errorModal.summon((e as any).statusCode)
+    }
 
-    console.log(result)
-    return result
 }
