@@ -49,15 +49,23 @@ export default defineNuxtConfig({
     ],
     imports: {
         dirs: [
-            'shared/**/*.ts',
-            'features/**/*.ts',
-            'widgets/**/*.ts',
-            'entities/**/*.ts'
+            './shared/**/*.ts',
+            './features/**/*.ts',
+            './widgets/**/*.ts',
+            './entities/**/*.ts'
         ]
     },
     runtimeConfig: {
         public: {
             apiBase: process.env.API_HOST
         }
+    },
+    pinia: {
+        storesDirs: [
+            './shared/**/model',
+            './features/**/model',
+            './widgets/**/model',
+            './entities/**/model'
+        ]
     }
 });
