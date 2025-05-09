@@ -5,9 +5,7 @@
         <SharedBaseInput label="password" type="password" :placeholder="t('login.password')"
             v-model="loginStore.password" :error="loginStore.errors.password" />
         <SharedBaseButton large type="submit">{{ t('login.submit') }}</SharedBaseButton>
-        <button type="button"
-            class="text-primary-link text-start relative bottom-4 text-sm cursor-pointer transition hover:text-blue-400"
-            @click="emits('bottomButton')">{{ t('login.changeLoginMode') }}</button>
+        <SharedInternalLink @click="emits('bottomButton')">{{ t('login.changeLoginMode') }}</SharedInternalLink>
     </form>
 </template>
 
