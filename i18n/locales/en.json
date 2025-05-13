@@ -29,5 +29,8 @@
         "header": "Sorry! Something went wrong"
     },
     "linkToMain": "Go home",
-    "backLink": "Go back"
+    "backLink": "Go back",
+    "loading": {
+        "header": "Loading..."
+    }
 }

@@ -62,10 +62,10 @@ export default defineNuxtConfig({
     },
     pinia: {
         storesDirs: [
-            './shared/**/model',
-            './features/**/model',
-            './widgets/**/model',
-            './entities/**/model'
+            './shared/**/*.store.ts',
+            './features/**/*.store.ts',
+            './widgets/**/*.store.ts',
+            './entities/**/*.store.ts'
         ]
     }
 });

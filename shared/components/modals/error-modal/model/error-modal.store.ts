@@ -8,14 +8,6 @@ export const useErrorModal = defineStore('error-modal', {
         message: ''
     }),
     actions: {
-        async catch<T extends (...args: any[]) => any>(fn: T, { message, args }: { message: string, args: Parameters<T> }) {
-            let m: string;
-            try {
-                fn(args)
-            } catch {
-                this.summon(message)
-            }
-        },
         summon(message: string) {
             this.show = true
             this.message = message

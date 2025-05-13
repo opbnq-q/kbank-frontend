@@ -1,6 +1,7 @@
 <template>
   <div>
     <SharedErrorModal></SharedErrorModal>
+    <SharedLoadingModal></SharedLoadingModal>
     <slot></slot>
   </div>
 </template>
