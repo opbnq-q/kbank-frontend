@@ -1,5 +1,6 @@
 <template>
-  <div class="flex gap-5 m-5 flex-col">
+  <div class="m-5 flex">
+    <EntityInfoCard></EntityInfoCard>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 export interface ErrorModalStoreState {
     show: boolean
-    message: string
+    message: string | number
 }
 export const useErrorModal = defineStore('error-modal', {
     state: (): ErrorModalStoreState => ({
@@ -8,7 +8,7 @@ export const useErrorModal = defineStore('error-modal', {
         message: ''
     }),
     actions: {
-        summon(message: string) {
+        summon(message: string | number) {
             this.show = true
             this.message = message
         }
