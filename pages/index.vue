@@ -1,11 +1,11 @@
 <template>
-  <div class="m-5 flex">
-    <EntityInfoCard></EntityInfoCard>
+  <div>
+    <FeatureMyProfile></FeatureMyProfile>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  middleware: 'auth-middleware',
+  middleware: 'auth-middleware'
 })
 </script>

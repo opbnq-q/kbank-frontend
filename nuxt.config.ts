@@ -57,7 +57,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiBase: process.env.API_HOST
+            apiBase: process.env.API_HOST,
+            wsBase: process.env.WS_BASE
         }
     },
     pinia: {

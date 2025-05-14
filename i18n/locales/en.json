@@ -32,5 +32,9 @@
     "backLink": "Go back",
     "loading": {
         "header": "Loading..."
-    }
+    },
+    "greeting": "Hello",
+    "standardUnit": "s.u.",
+    "yourDebts": "Your debts",
+    "yourOwnedDebts": "Your owned debts"
 }

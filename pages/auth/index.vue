@@ -1,10 +1,13 @@
 <template>
   <div>
-    <WidgetAuthForm></WidgetAuthForm>
+    <ClientOnly>
+      <WidgetAuthForm></WidgetAuthForm>
+    </ClientOnly>
   </div>
 </template>
 
 <script lang="ts" setup>
+
 
 </script>
 

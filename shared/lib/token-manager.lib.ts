@@ -10,4 +10,8 @@ export abstract class TokenManager {
     public static set(token: string): void | Promise<void> {
         if (import.meta.client) sessionStorage.setItem(TokenManager.key, token)
     }
+
+    public static remove(): void | Promise<void> {
+        if (import.meta.client) sessionStorage.removeItem(TokenManager.key)
+    }
 }

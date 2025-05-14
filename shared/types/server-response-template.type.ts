@@ -1,4 +1,4 @@
-export type ServerResponseTemplate<T = any> = {
+export type ServerResponseTemplate<T = unknown> = {
     status: "error"
     message: string
 } | {

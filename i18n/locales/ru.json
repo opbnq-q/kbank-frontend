@@ -32,5 +32,9 @@
     "backLink": "Назад",
     "loading": {
         "header": "Загрузка..."
-    }
+    },
+    "greeting": "Здравствуйте",
+    "standardUnit": "у.е.",
+    "yourDebts": "Задолженности",
+    "yourOwnedDebts": "Вам должны"
 }
