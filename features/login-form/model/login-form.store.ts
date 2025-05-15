@@ -51,7 +51,7 @@ export const useLoginFormStore = defineStore('login-form-store', {
             if (!result) return;
             if (result.status == 'success') {
                 await TokenManager.set(result.data)
-                return navigateTo('/')
+                navigateTo('/')
             }
         }
     }

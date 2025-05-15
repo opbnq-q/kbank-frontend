@@ -1,16 +1,22 @@
+import { TokenManager } from "~/shared/lib/token-manager.lib"
+
 export default defineNuxtPlugin(() => {
     const loadingModal = useLoadingModal()
-
     const config = useRuntimeConfig()
     const ofetch = $fetch.create({
         baseURL: config.public.apiBase as string,
-        onRequest: loadingModal.summon,
+        onRequest({ options }) {
+            loadingModal.summon()
+            if (import.meta.client) {
+                const token = TokenManager.get() || ''
+                if (token) {
+                    options.headers.append('Authorization', token as string)
+                }
+            }
+        },
         onResponse: loadingModal.hide,
         onRequestError: loadingModal.hide,
         onResponseError: loadingModal.hide,
-        headers: {
-            'Authorization': import.meta.client ? sessionStorage?.getItem('token') || '' : ''
-        }
     })
     return {
         provide: {
