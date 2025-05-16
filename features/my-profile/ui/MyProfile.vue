@@ -1,15 +1,18 @@
 <template>
     <section class="flex flex-col items-start justify-start gap-5">
-        <EntityInfoCard class="w-full max-sm:h-24 flex items-center">
+        <EntityInfoCard class="w-full max-sm:h-24">
             {{ profileStore.balance }} {{ t('standardUnit') }}
         </EntityInfoCard>
         <div class="flex w-full gap-5 max-sm:flex-col">
-            <EntityInfoCard class="w-full" color="blue">
+            <EntityInfoCard class="w-full" color="blue" to="/profile/my-debts">
                 {{ t('yourDebts') }}
             </EntityInfoCard>
             <EntityInfoCard class="w-full" color="green">
                 {{ t('yourOwnedDebts') }}
             </EntityInfoCard>
+        </div>
+        <div>
+            <h1>{{ t('history') }}</h1>
         </div>
     </section>
 </template>

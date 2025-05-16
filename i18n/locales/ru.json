@@ -36,5 +36,6 @@
     "greeting": "Здравствуйте",
     "standardUnit": "у.е.",
     "yourDebts": "Задолженности",
-    "yourOwnedDebts": "Вам должны"
+    "yourOwnedDebts": "Вам должны",
+    "history": "История"
 }
