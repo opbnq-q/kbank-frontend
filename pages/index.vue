@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <main>
     <FeatureMyProfile></FeatureMyProfile>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n()
+
 definePageMeta({
   middleware: 'auth-middleware'
 })

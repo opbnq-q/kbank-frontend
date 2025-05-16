@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-start justify-start gap-5">
+    <section class="flex flex-col items-start justify-start gap-5">
         <EntityInfoCard class="w-full max-sm:h-24 flex items-center">
             {{ profileStore.balance }} {{ t('standardUnit') }}
         </EntityInfoCard>
@@ -11,7 +11,7 @@
                 {{ t('yourOwnedDebts') }}
             </EntityInfoCard>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup lang="ts">
