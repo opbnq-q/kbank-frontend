@@ -8,7 +8,7 @@
         </div>
         <Pie :data :options class="max-h-22 sm:absolute sm:-right-22"></Pie>
         <h3 class="absolute bottom-3">{{ debtorName }}</h3>
-        <h3 class="absolute bottom-3 right-4">{{ status }}</h3>
+        <SharedViewedStatus :status></SharedViewedStatus>
     </article>
 </template>
 
