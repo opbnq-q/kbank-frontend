@@ -8,7 +8,7 @@
         </div>
         <Pie :data :options class="max-h-22 sm:absolute sm:-right-22"></Pie>
         <h3 class="absolute bottom-3">{{ debtorName }}</h3>
-        <SharedViewedStatus :status></SharedViewedStatus>
+        <SharedViewedStatus :tooltip="status.toLocaleLowerCase()" :status></SharedViewedStatus>
     </article>
 </template>
 

@@ -71,3 +71,26 @@ body {
     transition: background-color .3s, color .3s;
     font-family: 'Mulish';
 }
+
+*[tooltip] {
+    display: flex;
+    justify-content: center;
+}
+
+*[tooltip]::after {
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    background: var(--color-secondary-bg);
+    padding: 4px;
+    border-radius: 10px;
+    position: absolute;
+    content: attr(tooltip);
+    font-size: 1rem;
+    top: 100%;
+}
+
+*[tooltip]:hover::after {
+    visibility: visible;
+    opacity: 85%;
+}
