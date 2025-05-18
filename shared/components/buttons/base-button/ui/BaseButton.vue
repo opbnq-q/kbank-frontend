@@ -3,7 +3,7 @@
         border-[1px] border-primary-border transition 
         hover:bg-primary-hover active:bg-secondary-bg 
         active:scale-90
-        cursor-pointer flex items-center justify-center`, { 'h-10 font-bold': large }]">
+        cursor-pointer flex items-center justify-center`, { 'h-10 font-bold': large, 'aspect-square': square }]">
         <slot></slot>
     </button>
 </template>

@@ -1,6 +1,7 @@
 import { TokenManager } from "~/shared/lib/token-manager.lib";
 import type { FullUser } from "~/shared/types/full-user.type";
 import { Role } from "~/shared/types/role.type";
+import { getMy } from "../api/get-my.api";
 
 export interface MyProfileStoreState extends FullUser {
 
@@ -21,22 +22,12 @@ export const useMyProfile = defineStore('my-profile', {
     }),
     actions: {
         async load() {
-            const { $ofetch } = useNuxtApp()
-            const errorModal = useErrorModal()
-
-            try {
-                const result = await $ofetch<ServerResponseTemplate<FullUser>>('/users/my')
-                if (result.status === 'success') {
-                    this.$patch(result.data)
-                }
-            } catch (e) {
-                errorModal.summon((e as any).statusCode)
-            }
+            this.$patch(await getMy() as MyProfileStoreState)
         },
 
         async logout() {
             await TokenManager.remove()
             navigateTo('/auth')
-        }
+        },
     }
 })
