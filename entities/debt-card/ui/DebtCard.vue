@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 const props = defineProps<{
     title: string
-    description: string
+    description?: string
     price: number
     completed: number
     debtorName: string

@@ -29,5 +29,13 @@ export const useMyProfile = defineStore('my-profile', {
             await TokenManager.remove()
             navigateTo('/auth')
         },
+
+        patchBalance(b: number) {
+            this.balance = b
+        },
+
+        addDebts(debts: Debt[]) {
+            this.debts = [...debts, ...this.debts]
+        },
     }
 })

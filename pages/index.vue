@@ -1,13 +1,13 @@
 <template>
   <main>
-    <FeatureMyProfile></FeatureMyProfile>
+    <ClientOnly>
+      <FeatureMyProfile></FeatureMyProfile>
+    </ClientOnly>
   </main>
 </template>
 
 <script setup lang="ts">
-const { t } = useI18n()
-
 definePageMeta({
-  middleware: 'auth-middleware'
+  middleware: 'auth-middleware' 
 })
 </script>
