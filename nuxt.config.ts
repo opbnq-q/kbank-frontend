@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         defaultLocale: 'en',
         lazy: true,
         langDir: 'locales/',
-        strategy: 'prefix'
+        strategy: 'no_prefix'
     },
     pages: true,
     typescript: {
