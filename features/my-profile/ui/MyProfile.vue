@@ -11,9 +11,6 @@
                 {{ t('yourOwnedDebts') }}
             </EntityInfoCard>
         </div>
-        <div>
-            <h1>{{ t('history') }}</h1>
-        </div>
     </section>
 </template>
 

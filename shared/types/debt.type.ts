@@ -1,3 +1,4 @@
+import type { Currency } from "./currency.type";
 import type { DebtStatus } from "./debt-status.type";
 
 export interface Debt {
@@ -8,4 +9,6 @@ export interface Debt {
     isCompleted: boolean;
     price: number;
     complete: number;
+    currency: Currency;
+    lender: FullUser
 }

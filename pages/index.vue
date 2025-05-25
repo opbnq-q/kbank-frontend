@@ -10,4 +10,5 @@
 definePageMeta({
   middleware: 'auth-middleware' 
 })
+
 </script>

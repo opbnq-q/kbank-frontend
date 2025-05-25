@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1 class="text-center text-2xl">{{ t('yourDebts') }}</h1>
-    <EntityDebtCard v-for="debt in profile.debts" :completed="debt.complete" :price="debt.price" :status="debt.status"
-      :debtor-name="''" :description="debt.description" :title="debt.title"></EntityDebtCard>
+    <SharedHeaderText>{{ t('yourDebts') }}</SharedHeaderText>
+    <div class="grid place-items-center grid-cols-3 gap-y-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+      <EntityDebtCard v-for="debt in profile.debts" :complete="debt.complete * debt.currency.standardUnits" :price="debt.price * debt.currency.standardUnits" :status="debt.status"
+        :name="debt.lender.firstName" :description="debt.description" :title="debt.title"></EntityDebtCard>
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,7 @@ definePageMeta({
 })
 
 const profile = useMyProfile()
+onMounted(profile.load  )
 </script>
 
 <style></style>

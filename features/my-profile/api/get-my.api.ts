@@ -5,6 +5,7 @@ export const getMy = async () => {
     try {
         const result = await $ofetch<ServerResponseTemplate<FullUser>>('/users/my')
         if (result.status === 'success') {
+            console.log(result.data)
             return result.data
         }
     } catch (e) {
