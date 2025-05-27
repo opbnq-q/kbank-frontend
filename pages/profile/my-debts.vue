@@ -1,10 +1,8 @@
 <template>
   <div>
     <SharedHeaderText>{{ t('yourDebts') }}</SharedHeaderText>
-    <div class="grid place-items-center grid-cols-3 gap-y-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-      <EntityDebtCard v-for="debt in profile.debts" :complete="debt.complete * debt.currency.standardUnits" :price="debt.price * debt.currency.standardUnits" :status="debt.status"
-        :name="debt.lender.firstName" :description="debt.description" :title="debt.title"></EntityDebtCard>
-    </div>
+    <FeatureDebtsTape></FeatureDebtsTape>
+    <SharedToUpButton v-if="debtsTape.page >= debtsTape.totalPages && debtsTape.debts.length > 5"></SharedToUpButton>
   </div>
 </template>
 
@@ -16,8 +14,15 @@ definePageMeta({
   middleware: ['auth-middleware']
 })
 
-const profile = useMyProfile()
-onMounted(profile.load  )
+const debtsTape = useDebtsTapeStore()
+const windowScroll = useWindowScroll()
+watch(windowScroll.y, () => {
+  if (windowScroll.arrivedState.bottom && debtsTape.page < debtsTape.totalPages) {
+    debtsTape.load()
+  }
+})
+
+onMounted(debtsTape.load)
 </script>
 
 <style></style>

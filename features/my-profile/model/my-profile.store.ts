@@ -34,8 +34,5 @@ export const useMyProfile = defineStore('my-profile', {
             this.balance = b
         },
 
-        addDebts(debts: Debt[]) {
-            this.debts = [...debts, ...this.debts]
-        },
     }
 })

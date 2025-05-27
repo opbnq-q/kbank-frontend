@@ -19,6 +19,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
     const errorModal = useErrorModal()
     const profileStore = useMyProfile()
+    const debtsTapeStore = useDebtsTapeStore()
 
     ws.on("connect", () => {
         ws.emit("my")
@@ -26,7 +27,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
     ws.on("update", (response: WsResponse) => {
         profileStore.patchBalance(response.balance)
-        profileStore.addDebts(response.debts)
+        debtsTapeStore.addDebts(response.debts)
         response.debts.forEach(debt => {
             $ofetch(`debts/view/${debt.id}`, {
                 method: 'PATCH'
