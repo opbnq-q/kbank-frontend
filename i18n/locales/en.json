@@ -37,5 +37,7 @@
     "standardUnit": "s.u.",
     "yourDebts": "Your debts",
     "history": "History",
-    "yourOwnedDebts": "Your owned debts"
+    "yourOwnedDebts": "Your owned debts",
+    "youHaveNewDebt": "You have new debt!",
+    "go": "Go"
 }

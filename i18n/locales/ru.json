@@ -37,5 +37,7 @@
     "standardUnit": "у.е.",
     "yourDebts": "Задолженности",
     "yourOwnedDebts": "Вам должны",
-    "history": "История"
+    "history": "История",
+    "youHaveNewDebt": "У вас новый долг!",
+    "go": "Перейти"
 }

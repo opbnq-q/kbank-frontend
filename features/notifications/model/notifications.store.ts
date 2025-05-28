@@ -14,8 +14,14 @@ export const useNotificationsStore = defineStore('notifications-store', {
         }
     },
     actions: {
-        add(n: Notification) {
+        summon(n: Notification) {
             this.notifications.push(n)
+            setTimeout(() => {
+                this.remove(n)
+            }, 4000)
+        },
+        remove(n: Notification) {
+            this.notifications = this.notifications.filter(i => i != n)
         }
     }
 })

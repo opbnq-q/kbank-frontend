@@ -11,6 +11,10 @@
 const toast = useTemplateRef<HTMLDivElement>('toast')
 const initialToastOffsetLeft = ref(0);
 
+const emits = defineEmits<{
+  (e: 'remove'): void
+}>()
+
 const pointerSwipe = usePointerSwipe(toast, {
   threshold: 10,
   onSwipeStart: (e: PointerEvent) => {
@@ -29,6 +33,7 @@ const pointerSwipe = usePointerSwipe(toast, {
 
     if ((direction === 'left' || direction === 'right') && Math.abs(finalDistanceX) > 50) {
       deleteToast(direction);
+      emits('remove')
     } else {
       toast.value.style.transition = 'left 0.3s ease-out';
       toast.value.style.left = `${initialToastOffsetLeft.value}px`;

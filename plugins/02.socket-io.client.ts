@@ -4,7 +4,7 @@ import { TokenManager } from "~/shared/lib/token-manager.lib"
 export interface WsResponse {
     balance: number
     debts: Debt[]
-} 
+}
 
 export default defineNuxtPlugin(async (nuxtApp) => {
     const { public: { wsBase } } = useRuntimeConfig()
@@ -20,6 +20,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const errorModal = useErrorModal()
     const profileStore = useMyProfile()
     const debtsTapeStore = useDebtsTapeStore()
+    const notificationsStore = useNotificationsStore()
 
     ws.on("connect", () => {
         ws.emit("my")
@@ -29,6 +30,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         profileStore.patchBalance(response.balance)
         debtsTapeStore.addDebts(response.debts)
         response.debts.forEach(debt => {
+            notificationsStore.summon({
+                message: 'Hou have new debt!',
+                link: `/debts/${debt.id}`
+            })
             $ofetch(`debts/view/${debt.id}`, {
                 method: 'PATCH'
             }).catch(console.error)
