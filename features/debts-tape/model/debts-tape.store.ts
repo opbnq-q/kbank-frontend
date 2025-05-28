@@ -1,13 +1,13 @@
 import { getMyDebts } from "../api/get-my-debts.api"
 
-export interface DebtsTapeStore {
+export interface DebtsTapeStoreState {
     debts: Debt[]
     totalPages: number
     page: number
 }
 
 export const useDebtsTapeStore = defineStore('debt-store', {
-    state: (): DebtsTapeStore => ({
+    state: (): DebtsTapeStoreState => ({
         debts: [],
         page: 0,
         totalPages: 0

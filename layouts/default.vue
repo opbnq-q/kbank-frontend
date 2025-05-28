@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col items-center h-full w-full">
+  <div class="flex flex-col items-center h-full w-full px-5">
     <div class="max-w-7xl w-full">
       <WidgetNav v-if="!isAuthRoute" class="sticky z-50" />
       <SharedErrorModal />
       <SharedLoadingModal />
-      <div class="px-5">
+      <div class="">
         <slot />
       </div>
     </div>
