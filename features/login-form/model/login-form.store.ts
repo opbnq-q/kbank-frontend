@@ -44,7 +44,7 @@ export const useLoginFormStore = defineStore('login-form-store', {
         async submit(t: I18nGetter) {
             this.validateForm(t)
             if (Object.values(this.errors).some(v => !!v)) return;
-            const result = await loginApi<string>({
+            const result = await loginApi({
                 email: this.email,
                 password: this.password
             })

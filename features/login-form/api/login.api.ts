@@ -1,11 +1,11 @@
 import type { LoginData } from "../types/login-data.type"
 
-export const loginApi = async <T = unknown>(data: LoginData) => {
+export const loginApi = async (data: LoginData) => {
     const { $ofetch } = useNuxtApp()
     const errorModal = useErrorModal()
 
     try {
-        const result = await $ofetch<ServerResponseTemplate<T>>('/auth/login', {
+        const result = await $ofetch<ServerResponseTemplate<string>>('/auth/login', {
             method: "POST",
             body: data,
         })

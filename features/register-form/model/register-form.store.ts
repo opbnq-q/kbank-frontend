@@ -80,7 +80,7 @@ export const useRegisterFormStore = defineStore('register-form-store', {
         async submit(t: I18nGetter) {
             this.validateForm(t)
             if (Object.values(this.errors).some(v => !!v)) return;
-            const result = await registerApi<{data: string}>({
+            const result = await registerApi({
                 email: this.email,
                 firstName: this.firstName,
                 lastName: this.lastName,
@@ -88,7 +88,8 @@ export const useRegisterFormStore = defineStore('register-form-store', {
             })
             if (!result) return;
             if (result.status == 'success') {
-                await TokenManager.set(result.data.data)
+                console.log(result.data)
+                await TokenManager.set(result.data)
                 return navigateTo('/')
             }
         }
