@@ -1,5 +1,3 @@
-import type { LoginData } from "../types/login-data.type"
-
 export const loginApi = async (data: LoginData) => {
     const { $ofetch } = useNuxtApp()
     const errorModal = useErrorModal()

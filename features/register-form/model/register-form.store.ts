@@ -1,7 +1,3 @@
-import { defineStore } from 'pinia'
-import type { I18nGetter } from '~/shared/types/i18n-getter.type'
-import { registerApi } from '../api/register.api'
-import { isEmail } from '~/shared/utils/is-email.util'
 import { TokenManager } from '~/shared/lib/token-manager.lib'
 
 export interface RegisterFormState {

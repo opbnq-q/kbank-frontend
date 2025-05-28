@@ -49,6 +49,7 @@ export default defineNuxtConfig({
         }
     ],
     imports: {
+        autoImport: true,
         dirs: [
             './shared/**/*.ts',
             './features/**/*.ts',

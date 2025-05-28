@@ -1,5 +1,3 @@
-import type { Notification } from "../types/notification.type"
-
 export interface NotificationsStoreState {
     notifications: Notification[]
 }

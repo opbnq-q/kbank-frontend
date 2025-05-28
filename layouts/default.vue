@@ -15,10 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-
 const route = useRoute()
 const { locale } = useI18n()
 

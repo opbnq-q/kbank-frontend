@@ -1,5 +1,3 @@
-import { getMyDebts } from "../api/get-my-debts.api"
-
 export interface DebtsTapeStoreState {
     debts: Debt[]
     totalPages: number

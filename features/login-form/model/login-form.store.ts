@@ -1,6 +1,3 @@
-import { defineStore } from 'pinia'
-import { isEmail } from '~/shared/utils/is-email.util'
-import { loginApi } from '../api/login.api'
 import { TokenManager } from '~/shared/lib/token-manager.lib'
 
 export interface LoginFormState {

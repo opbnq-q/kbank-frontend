@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-
 defineProps<{
     placeholder?: string
     label?: string

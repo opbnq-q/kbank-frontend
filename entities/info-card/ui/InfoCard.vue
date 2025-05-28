@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
 type Color = 'green' | 'blue' | 'yellow' | 'orange' | 'purple' | 'red' | 'pink'
 
 const { color = "pink" } = defineProps<{

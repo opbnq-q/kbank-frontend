@@ -1,6 +1,3 @@
-import type { Debt } from "./debt.type";
-import type { Role } from "./role.type";
-
 export interface FullUser {
     id: number
     firstName: string;

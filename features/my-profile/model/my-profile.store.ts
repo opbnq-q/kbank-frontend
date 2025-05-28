@@ -1,7 +1,4 @@
 import { TokenManager } from "~/shared/lib/token-manager.lib";
-import type { FullUser } from "~/shared/types/full-user.type";
-import { Role } from "~/shared/types/role.type";
-import { getMy } from "../api/get-my.api";
 
 export interface MyProfileStoreState extends FullUser {
 
