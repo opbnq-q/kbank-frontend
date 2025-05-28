@@ -1,6 +1,6 @@
 <template>
     <div ref="toast"
-        class="border-[1px] select-none absolute overflow-hidden z-50 my-2 bg-secondary-bg border-primary-border max-w-xs p-4 rounded-xl">
+        class="border-[1px] select-none overflow-hidden bg-secondary-bg border-primary-border max-w-xs p-4 rounded-xl">
         <slot></slot>
         <div class="h-1 absolute loading-line-animation ease-linear bottom-0 bg-[var(--accent-light-blue)] left-0">
         </div>
@@ -36,6 +36,12 @@ const pointerSwipe = usePointerSwipe(toast, {
   }
 })
 
+onMounted(() => {
+  setTimeout(() => {
+    deleteToast('right')
+  }, 4000);
+})
+
 function deleteToast(swipeDirection?: "left" | "right") {
   if (!toast.value) return;
 
@@ -45,10 +51,9 @@ function deleteToast(swipeDirection?: "left" | "right") {
   toastEl.style.opacity = '0';
 
   if (swipeDirection === 'left') {
-    toastEl.style.left = `-${toastEl.offsetWidth}px`;
+    toastEl.style.left = `-${window.innerWidth}px`;
   } else if (swipeDirection === 'right') {
-    const parentWidth = toastEl.parentElement?.clientWidth || window.innerWidth;
-    toastEl.style.left = `${parentWidth}px`;
+    toastEl.style.left = `${toastEl.offsetWidth}px`;
   }
 
   const removeElement = () => {

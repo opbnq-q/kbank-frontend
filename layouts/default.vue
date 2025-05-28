@@ -7,6 +7,9 @@
       <div class="">
         <slot />
       </div>
+      <div class="fixed bottom-5 right-5">
+        <FeatureNotifications></FeatureNotifications>
+      </div>
     </div>
   </div>
 </template>
@@ -28,4 +31,5 @@ const errorModal = useErrorModal()
 errorModal.$subscribe((mutation, state) => {
   if (!state.show) state.message = ''
 })
+
 </script>

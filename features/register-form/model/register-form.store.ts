@@ -88,7 +88,6 @@ export const useRegisterFormStore = defineStore('register-form-store', {
             })
             if (!result) return;
             if (result.status == 'success') {
-                console.log(result.data)
                 await TokenManager.set(result.data)
                 return navigateTo('/')
             }

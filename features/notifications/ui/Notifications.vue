@@ -1,12 +1,16 @@
 <template>
-    <div class="relative">
-        <SharedBaseButton square>
-            <div class="bg-red-600 rounded-full absolute -top-0.5 z-30 -right-0.5 w-2 h-2"></div>
-            <Icon name="carbon:notification"></Icon>
-        </SharedBaseButton>
-    </div>
+    <ClientOnly>
+        <div class="flex flex-col items-end gap-2">
+            <EntityToast class="relative" v-for="n in notificationsStore.notifications">
+                <h1>{{ n.message }}</h1>
+                <SharedInternalLink :to="n.link" v-if="n.link">Перейти
+                </SharedInternalLink>
+            </EntityToast>
+        </div>
+    </ClientOnly>
 </template>
 
 <script setup lang="ts">
-const { $ws } = useNuxtApp()
+const notificationsStore = useNotificationsStore()
+
 </script>

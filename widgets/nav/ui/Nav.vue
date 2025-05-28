@@ -4,7 +4,7 @@
         <div class="flex items-center gap-4">
             <FeatureLangSwitcher class="w-[100px]"></FeatureLangSwitcher>
             <ClientOnly>
-                <FeatureNotifications></FeatureNotifications>
+                <FeatureBell></FeatureBell>
             </ClientOnly>
         </div>
     </nav>
