@@ -1,3 +1,5 @@
+import type { CompleteRequest } from "./complete-request.type";
+
 export interface Debt {
     id: number;
     title: string;
@@ -7,5 +9,6 @@ export interface Debt {
     price: number;
     complete: number;
     currency: Currency;
-    lender: FullUser
+    lender: FullUser;
+    completeRequests: CompleteRequest[];
 }

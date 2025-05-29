@@ -23,7 +23,12 @@ export const useDebtsTapeStore = defineStore('debt-store', {
             this.unique()
         },
         unique() {
-            this.debts = Array.from(new Set(this.debts))
+            this.debts = this.debts.reduce((acc: Debt[], d: Debt) => {
+                if (acc.find(accD => d.id == accD.id)) {
+                    return acc;
+                }
+                return [...acc, d]
+            }, [] as Debt[])
         }
     }
 })

@@ -1,24 +1,25 @@
 <template>
     <article
-        class="w-full overflow-hidden max-w-80 relative border-[1px] max-sm:flex-col flex p-4 max-sm:pb-10 max-sm:gap-4 border-primary-border bg-secondary-bg rounded-2xl min-h-40">
-        <div class="sm:absolute">
-            <h1 class="text-xl">{{ title }}</h1>
-            <h1>{{ complete }} / {{ price }} {{ t('standardUnit') }}</h1>
-            <h2 class="">{{ description }}</h2>
+        class="w-full overflow-hidden max-w-80 relative border-[1px] gap-4 flex-col flex p-4 border-primary-border bg-secondary-bg rounded-2xl min-h-40">
+        <NuxtLink :to="`/debts/${props.id}`" class="hover:underline">
+            <h1 class="text-xl">{{ props.title }}</h1>
+            <h2 class="wrap-break-word">{{ props.description }}</h2>
+        </NuxtLink>
+        <SharedProgressBar :complete :price></SharedProgressBar>
+        <div class="flex items-center justify-between">
+            <h3>{{ props.name }}</h3>
+            <SharedViewedStatus :status></SharedViewedStatus>
         </div>
-        <Pie :data :options class="max-h-22 sm:absolute sm:-right-22"></Pie>
-        <h3 class="absolute bottom-3">{{ name }}</h3>
-        <SharedViewedStatus :status></SharedViewedStatus>
     </article>
 </template>
 
 <script setup lang="ts">
-import { ArcElement, Chart, Legend, Tooltip, type ChartData, type ChartOptions } from 'chart.js';
-import { Pie } from 'vue-chartjs';
+import { SharedArc } from '#components';
 
 const { t } = useI18n()
 
 const props = defineProps<{
+    id: number
     title: string
     description?: string
     price: number
@@ -27,26 +28,4 @@ const props = defineProps<{
     status: DebtStatus
 }>()
 
-Chart.register(ArcElement, Tooltip, Legend)
-
-const data: ChartData<'pie'> = {
-    labels: ['Completed', "Price"],
-    datasets: [
-        {
-            data: [props.complete, props.price - props.complete],
-            backgroundColor: ['#00E676', '#2979FF'],
-            borderWidth: 1,
-            borderColor: 'transparent'
-        }
-    ],
-}
-
-const options: ChartOptions<'pie'> = {
-    plugins: {
-        legend: {
-            display: false
-        },
-
-    }
-}
 </script>
