@@ -39,5 +39,7 @@
     "history": "History",
     "yourOwnedDebts": "Your owned debts",
     "youHaveNewDebt": "You have new debt!",
-    "go": "Go"
+    "go": "Go",
+    "debtor": "Debtor",
+    "lender": "Lender"
 }

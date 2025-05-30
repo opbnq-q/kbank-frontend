@@ -1,24 +1,27 @@
 <template>
   <div v-if="debt">
-    <div :class="{ 'grid grid-cols-2': completeRequests?.length }" class="gap-4 max-lg:flex max-lg:flex-col">
+    <div :class="{ 'grid grid-cols-2 gap-4': completeRequests?.length }" class="max-lg:flex max-lg:flex-col">
       <section>
         <SharedHeaderText class="text-start">{{ debt?.title }}</SharedHeaderText>
         <h2 class="mb-10 wrap-break-word text-lg">{{ debt?.description }}</h2>
       </section>
       <section class="flex justify-center lg:justify-end">
-        <Bar v-if="debt && completeRequests?.length" :data :options class="w-full"></Bar>
+        <Bar v-if="completeRequests?.length" :data :options class="w-full"></Bar>
       </section>
     </div>
-    <SharedProgressBar class="w-full mt-8" :complete="debt.complete * debt.currency.standardUnits"
+    <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
       :price="debt.price * debt.currency.standardUnits"></SharedProgressBar>
     <section class="grid grid-cols-2 w-full gap-y-2 gap-x-4 text-sm my-4">
-      <h1>Debtor</h1>
-      <h1>Lender</h1>
+      <h1>{{ t('debtor') }}</h1>
+      <h1>{{ t('lender') }}</h1>
       <EntityUserCard :name="`${debt.debtor.firstName} ${debt.debtor.lastName}`" :id="debt.debtor.id"
         :balance="debt.debtor.balance"></EntityUserCard>
       <EntityUserCard :name="`${debt.lender.firstName} ${debt.lender.lastName}`" :id="debt.lender.id"
         :balance="debt.lender.balance"></EntityUserCard>
     </section>
+    <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
+      :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
+    
   </div>
 </template>
 
@@ -27,6 +30,8 @@ import { Chart, registerables, type ChartData, type ChartOptions } from 'chart.j
 import { Bar } from 'vue-chartjs'
 import { CompleteRequestStatus } from '~/shared/types/complete-request-status.type'
 import type { CompleteRequest } from '~/shared/types/complete-request.type'
+
+const { t } = useI18n()
 
 const debt = ref<null | Debt>(null)
 
