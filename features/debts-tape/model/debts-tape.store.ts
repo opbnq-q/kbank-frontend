@@ -29,6 +29,12 @@ export const useDebtsTapeStore = defineStore('debt-store', {
                 }
                 return [...acc, d]
             }, [] as Debt[])
+        },
+        changeStatusById(id: number, newStatus: DebtStatus) {
+            this.debts = this.debts.map(d => ({
+                ...d,
+                status: id == d.id? newStatus : d.status
+            }))
         }
     }
 })

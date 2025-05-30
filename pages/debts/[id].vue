@@ -2,8 +2,9 @@
   <div v-if="debt">
     <div :class="{ 'grid grid-cols-2 gap-4': completeRequests?.length }" class="max-lg:flex max-lg:flex-col">
       <section>
-        <SharedHeaderText class="text-start">{{ debt?.title }}</SharedHeaderText>
-        <h2 class="mb-10 wrap-break-word text-lg">{{ debt?.description }}</h2>
+        <SharedHeaderText class="text-start">{{ debt.title }}</SharedHeaderText>
+        <h2 class="wrap-break-word text-lg font-semibold">{{ debt.price }} {{ debt.currency.title }}</h2>
+        <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
       <section class="flex justify-center lg:justify-end">
         <Bar v-if="completeRequests?.length" :data :options class="w-full"></Bar>
@@ -21,7 +22,30 @@
     </section>
     <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
       :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
-    
+    <section v-if="debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED"
+      class="w-full grid grid-cols-2 gap-4 mt-8">
+      <button @click="async () => {
+        const result = await $ofetch<ServerResponseTemplate>(`/debts/deny/${id}`, {
+          method: 'PATCH'
+        })
+        if (result.status == 'success') {
+          debt!.status = DebtStatus.DENIED
+          debtsTape.changeStatusById(debt!.id, DebtStatus.DENIED)
+        }
+      }"
+        class="bg-[var(--accent-light-red)] p-4 hover:opacity-90 rounded-xl text-primary-bg cursor-pointer transition active:scale-90">Deny</button>
+      <button @click="async () => {
+        const result = await $ofetch<ServerResponseTemplate>(`/debts/accept/${id}`, {
+          method: 'PATCH'
+        })
+        if (result.status == 'success') {
+          debt!.status = DebtStatus.ACCEPTED
+          debtsTape.changeStatusById(debt!.id, DebtStatus.ACCEPTED)
+          //TODO: update debt using request 
+        }
+      }"
+        class="bg-[var(--accent-light-green)] hover:opacity-90 p-4 rounded-xl text-primary-bg cursor-pointer transition active:scale-90">Accept</button>
+    </section>
   </div>
 </template>
 
@@ -31,25 +55,22 @@ import { Bar } from 'vue-chartjs'
 import { CompleteRequestStatus } from '~/shared/types/complete-request-status.type'
 import type { CompleteRequest } from '~/shared/types/complete-request.type'
 
+const debtsTape = useDebtsTapeStore()
+
 const { t } = useI18n()
 
 const debt = ref<null | Debt>(null)
 
 const route = useRoute()
 const { $ofetch } = useNuxtApp()
-const errorModal = useErrorModal()
 const id = parseInt(route.params.id as string)
 
 Chart.register(...registerables)
 
 onMounted(async () => {
-  try {
-    const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
-    if (result.status == 'success') {
-      debt.value = result.data
-    }
-  } catch (e) {
-    errorModal.summon((e as any).statusCode)
+  const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
+  if (result.status == 'success') {
+    debt.value = result.data
   }
 })
 

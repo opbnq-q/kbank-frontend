@@ -9,6 +9,7 @@ export default defineNuxtPlugin(async () => {
         onRequest: async ({ options }) => {
             const token = await TokenManager.get()
             if (token) options.headers.append('Authorization', token);
+            loadingModal.summon();
         },
         onResponse: loadingModal.hide,
         onRequestError: ({ error: { name } }) => {

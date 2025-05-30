@@ -45,7 +45,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
                 })
                 $ofetch(`debts/view/${debt.id}`, {
                     method: 'PATCH'
-                }).catch(console.error)
+                })
             })
         })
 
