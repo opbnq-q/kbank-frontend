@@ -11,4 +11,5 @@ export interface Debt {
     currency: Currency;
     lender: FullUser;
     completeRequests: CompleteRequest[];
+    debtor: FullUser;
 }

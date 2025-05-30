@@ -1,9 +1,9 @@
 <template>
     <article
-        class="w-full overflow-hidden max-w-80 relative border-[1px] gap-4 flex-col flex p-4 border-primary-border bg-secondary-bg rounded-2xl min-h-40">
+        class="w-full  max-w-80 relative border-[1px] gap-4 flex-col flex p-4 border-primary-border bg-secondary-bg rounded-2xl min-h-40">
         <NuxtLink :to="`/debts/${props.id}`" class="hover:underline">
-            <h1 class="text-xl">{{ props.title }}</h1>
-            <h2 class="wrap-break-word">{{ props.description }}</h2>
+            <h1 class="text-xl h-6 overflow-hidden text-ellipsis ">{{ props.title }}</h1>
+            <h2 class="h-6 overflow-hidden text-ellipsis">{{ props.description }}</h2>
         </NuxtLink>
         <SharedProgressBar :complete :price></SharedProgressBar>
         <div class="flex items-center justify-between">
