@@ -1,13 +1,13 @@
 <template>
   <div v-if="debt">
-    <div :class="{ 'grid grid-cols-2 gap-4': completeRequests?.length }" class="max-lg:flex max-lg:flex-col">
+    <div :class="{ 'grid grid-cols-2 gap-4': acceptedCompletedRequests?.length }" class="max-lg:flex max-lg:flex-col">
       <section>
         <SharedHeaderText class="text-start">{{ debt.title }}</SharedHeaderText>
         <h2 class="wrap-break-word text-lg font-semibold">{{ debt.price }} {{ debt.currency.title }}</h2>
         <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
-      <section class="flex justify-center lg:justify-end">
-        <Bar v-if="completeRequests?.length" :data :options class="w-full"></Bar>
+      <section class="flex justify-center lg:justify-end max-lg:mb-4" v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests?.length">
+        <Bar :data :options class="w-full"></Bar>
       </section>
     </div>
     <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
@@ -41,10 +41,18 @@
         if (result.status == 'success') {
           debt!.status = DebtStatus.ACCEPTED
           debtsTape.changeStatusById(debt!.id, DebtStatus.ACCEPTED)
-          //TODO: update debt using request 
+          const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
+          if (result.status == 'success') {
+            debt = result.data
+          }
         }
       }"
         class="bg-[var(--accent-light-green)] hover:opacity-90 p-4 rounded-xl text-primary-bg cursor-pointer transition active:scale-90">Accept</button>
+    </section>
+    <section class="mt-8" v-else-if="debt.status === DebtStatus.ACCEPTED">
+      <div v-for="cr in debt.completeRequests">
+        {{ cr.title }}
+      </div>
     </section>
   </div>
 </template>
@@ -74,17 +82,17 @@ onMounted(async () => {
   }
 })
 
-const completeRequests: ComputedRef<CompleteRequest[] | undefined> = computed(() => {
-  if (debt.value) return debt.value.completeRequests.filter(el => el.status != CompleteRequestStatus.NOT_VIEWED);
+const acceptedCompletedRequests: ComputedRef<CompleteRequest[] | undefined> = computed(() => {
+  if (debt.value) return debt.value.completeRequests.filter(el => el.status === CompleteRequestStatus.ACCEPTED);
 })
 
 
-const data: ComputedRef<ChartData<'bar'>> = computed(() => (completeRequests.value ? {
+const data: ComputedRef<ChartData<'bar'>> = computed(() => (acceptedCompletedRequests.value ? {
   datasets: [{
-    data: completeRequests.value.map(el => el.price * (debt.value as Debt).currency.standardUnits),
+    data: acceptedCompletedRequests.value.map(el => el.price * (debt.value as Debt).currency.standardUnits),
     backgroundColor: '#00E676'
   }],
-  labels: completeRequests.value.map(el => el.title)
+  labels: acceptedCompletedRequests.value.map(el => el.title)
 } : {
   datasets: []
 }))

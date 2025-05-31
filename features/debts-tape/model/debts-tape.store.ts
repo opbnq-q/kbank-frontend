@@ -19,7 +19,7 @@ export const useDebtsTapeStore = defineStore('debt-store', {
            }
         },
         addDebts(debts: Debt[]) {
-            this.debts = [...debts, ...this.debts]
+            this.debts = [...debts, ...this.debts];
             this.unique()
         },
         unique() {
