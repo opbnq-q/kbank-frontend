@@ -1,10 +1,12 @@
 import { io, Socket } from "socket.io-client"
+import { useCompleteRequestsTapeStore } from "~/features/complete-requests-tape/model/complete-requests-tape.store"
 import { TokenManager } from "~/shared/lib/token-manager.lib"
 
 
 export interface WsResponse {
     balance: number
     debts: Debt[]
+    requests: CompleteRequest[]
 }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -15,6 +17,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const profileStore = useMyProfile()
     const debtsTapeStore = useDebtsTapeStore()
     const notificationsStore = useNotificationsStore()
+    const completeRequestsTape = useCompleteRequestsTapeStore()
 
     let ws: Socket | null = null
 
@@ -36,17 +39,37 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         })
 
         ws.on("update", (response: WsResponse) => {
+            console.log(response)
             profileStore.patchBalance(response.balance)
             debtsTapeStore.addDebts(response.debts)
             response.debts.forEach(debt => {
                 notificationsStore.summon({
-                    message: 'You have new debt!',
+                    message: 'You have got a new debt!',
                     link: `/debts/${debt.id}`
                 })
                 $ofetch(`debts/view/${debt.id}`, {
                     method: 'PATCH'
                 })
             })
+            const requests = response.requests.reduce((acc, req) => {
+                const debtId = req.debt.id
+                if (!acc[debtId]) acc[debtId] = []
+                acc[debtId].push(req)
+                return acc
+            }, {} as Record<number, CompleteRequest[]>)
+            for (let key in requests) {
+                const k = Number(key)
+                requests[k].forEach(request => {
+                    notificationsStore.summon({
+                        message: 'You have got a new complete request!',
+                        link: `/complete-requests/${request.id}`
+                    })
+                    $ofetch(`/complete-requests/view/${request.id}`, {
+                        method: 'PATCH'
+                    })
+                })
+                completeRequestsTape.addCompleteRequests(k, requests[k])
+            }
         })
 
         ws.on("connect_error", (err: Error) => {

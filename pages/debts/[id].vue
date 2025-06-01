@@ -6,7 +6,8 @@
         <h2 class="wrap-break-word text-lg font-semibold">{{ debt.price }} {{ debt.currency.title }}</h2>
         <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
-      <section class="flex justify-center lg:justify-end max-lg:mb-4" v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests?.length">
+      <section class="flex justify-center lg:justify-end max-lg:mb-4"
+        v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests?.length">
         <Bar :data :options class="w-full"></Bar>
       </section>
     </div>
@@ -49,10 +50,9 @@
       }"
         class="bg-[var(--accent-light-green)] hover:opacity-90 p-4 rounded-xl text-primary-bg cursor-pointer transition active:scale-90">Accept</button>
     </section>
-    <section class="mt-8" v-else-if="debt.status === DebtStatus.ACCEPTED">
-      <div v-for="cr in debt.completeRequests">
-        {{ cr.title }}
-      </div>
+    <section class="mt-8 flex flex-col gap-2" v-else-if="debt.status === DebtStatus.ACCEPTED">
+      <h4 class="text-sm">{{ t('history') }}</h4>
+      <FeatureCompleteRequestsTape :debt :profile-id="profile.id"></FeatureCompleteRequestsTape>
     </section>
   </div>
 </template>
@@ -60,10 +60,15 @@
 <script lang="ts" setup>
 import { Chart, registerables, type ChartData, type ChartOptions } from 'chart.js'
 import { Bar } from 'vue-chartjs'
-import { CompleteRequestStatus } from '~/shared/types/complete-request-status.type'
-import type { CompleteRequest } from '~/shared/types/complete-request.type'
+import { useCompleteRequestsTapeStore } from '~/features/complete-requests-tape/model/complete-requests-tape.store'
+
+definePageMeta({
+  middleware: ['auth-middleware']
+})
 
 const debtsTape = useDebtsTapeStore()
+const profile = useMyProfile()
+const completeRequestsTape = useCompleteRequestsTapeStore()
 
 const { t } = useI18n()
 
@@ -76,16 +81,14 @@ const id = parseInt(route.params.id as string)
 Chart.register(...registerables)
 
 onMounted(async () => {
+  profile.load()
   const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
   if (result.status == 'success') {
     debt.value = result.data
   }
 })
 
-const acceptedCompletedRequests: ComputedRef<CompleteRequest[] | undefined> = computed(() => {
-  if (debt.value) return debt.value.completeRequests.filter(el => el.status === CompleteRequestStatus.ACCEPTED);
-})
-
+const acceptedCompletedRequests = computed(() => debt.value ? completeRequestsTape.acceptedCompleteRequests(debt.value.id) : [])
 
 const data: ComputedRef<ChartData<'bar'>> = computed(() => (acceptedCompletedRequests.value ? {
   datasets: [{

@@ -14,10 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { SharedArc } from '#components';
-
-const { t } = useI18n()
-
 const props = defineProps<{
     id: number
     title: string
