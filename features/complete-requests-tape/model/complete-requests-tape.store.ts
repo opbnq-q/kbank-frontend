@@ -23,7 +23,7 @@ export const useCompleteRequestsTapeStore = defineStore('complete-requests-tape'
             if (this.debtIdCompleteRequestMap.has(debtId)) {
                 this.debtIdCompleteRequestMap.set(debtId, this.debtIdCompleteRequestMap.get(debtId)!.map(el => ({
                     ...el,
-                    status: el.id === requestId? newStatus : el.status
+                    status: el.id === requestId ? newStatus : el.status
                 })))
             }
         },
@@ -50,7 +50,7 @@ export const useCompleteRequestsTapeStore = defineStore('complete-requests-tape'
                 debtId, this.debtIdCompleteRequestMap.get(debtId)!.reduce((acc: CompleteRequest[], el: CompleteRequest) => {
                     if (acc.find(i => i.id == el.id)) {
                         return acc
-                    } 
+                    }
                     return [...acc, el]
                 }, [] as CompleteRequest[])
             )
@@ -59,6 +59,12 @@ export const useCompleteRequestsTapeStore = defineStore('complete-requests-tape'
     getters: {
         acceptedCompleteRequests() {
             return (debtId: number) => this.debtIdCompleteRequestMap.get(debtId)?.filter(el => el.status == CompleteRequestStatus.ACCEPTED)
+        },
+        ignoredAndNotViewedRequests() {
+            return (debtId: number) => this.debtIdCompleteRequestMap.get(debtId)?.filter(el => el.status == CompleteRequestStatus.NOT_VIEWED || el.status == CompleteRequestStatus.IGNORED)
+        },
+        deniedCompleteRequests() {
+           return (debtId: number) => this.debtIdCompleteRequestMap.get(debtId)?.filter(el => el.status == CompleteRequestStatus.DENIED)
         }
     }
 })

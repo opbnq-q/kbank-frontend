@@ -39,7 +39,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         })
 
         ws.on("update", (response: WsResponse) => {
-            console.log(response)
             profileStore.patchBalance(response.balance)
             debtsTapeStore.addDebts(response.debts)
             response.debts.forEach(debt => {
