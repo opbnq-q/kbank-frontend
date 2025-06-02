@@ -2,7 +2,7 @@
     <div ref="toast"
         class="border-[1px] select-none overflow-hidden bg-secondary-bg border-primary-border max-w-xs p-4 rounded-xl">
         <slot></slot>
-        <div class="h-1 absolute loading-line-animation ease-linear bottom-0 bg-[var(--accent-light-blue)] left-0">
+        <div class="h-1 absolute loading-line-animation ease-linear bottom-0 bg-accent-blue left-0">
         </div>
     </div>
 </template>

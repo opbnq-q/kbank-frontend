@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="w-full h-6 bg-secondary-bg border-primary-border border-[1px] rounded">
-      <div class="h-6 bg-[var(--accent-light-green)] rounded" :style="{ width: progress + '%' }"></div>
+      <div class="h-6 bg-accent-green rounded" :style="{ width: progress + '%' }"></div>
     </div>
     <div class="mt-2 text-sm">
       {{ props.complete }} / {{ props.price }} {{ t('standardUnit') }}

@@ -2,20 +2,20 @@
 
 :root {
     --color-primary-bg: #ffffff;
-    --color-secondary-bg: black;
+    --color-secondary-bg: #f4f4f4;
     --color-primary-text: #000000;
-    --color-primary-border: oklch(37.1% 0 0);
-    --color-primary-hover: oklch(27.4% 0.006 286.033);
-    --color-primary-focus: oklch(27.4% 0.006 286.033);
+    --color-primary-border: black;
+    --color-primary-hover: rgb(228, 225, 225);
+    --color-primary-focus: rgb(206, 206, 206);
     --color-primary-link: #307cfc;
 
-    --accent-light-green: #00E676;
-    --accent-light-blue: #2979FF;
-    --accent-light-yellow: #FFD600;
-    --accent-light-orange: #FF9100;
-    --accent-light-purple: #A020F0;
-    --accent-light-red: #FF1744;
-    --accent-light-pink: #FF2D87;
+    --color-accent-green: #00E676;
+    --color-accent-blue: #2979FF;
+    --color-accent-yellow: #FFD600;
+    --color-accent-orange: #FF9100;
+    --color-accent-purple: #A020F0;
+    --color-accent-red: #FF1744;
+    --color-accent-pink: #FF2D87;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,13 +28,13 @@
         --color-primary-hover: oklch(27.4% 0.006 286.033);
         --color-primary-link: #307cfc;
 
-        --accent-dark-green: #00E676;
-        --accent-dark-blue: #2979FF;
-        --accent-dark-yellow: #FFD600;
-        --accent-dark-orange: #FF9100;
-        --accent-dark-purple: #A020F0;
-        --accent-dark-red: #FF1744;
-        --accent-dark-pink: #FF2D87;
+        --color-accent-green: #00E676;
+        --color-accent-blue: #2979FF;
+        --color-accent-yellow: #FFD600;
+        --color-accent-orange: #FF9100;
+        --color-accent-purple: #A020F0;
+        --color-accent-red: #FF1744;
+        --color-accent-pink: #FF2D87;
     }
 }
 
@@ -47,21 +47,13 @@
     --color-primary-focus: var(--color-primary-focus);
     --color-primary-link: var(--color-primary-link);
 
-    --accent-light-green: var(--accent-light-green);
-    --accent-light-blue: var(--accent-light-blue);
-    --accent-light-yellow: var(--accent-light-yellow);
-    --accent-light-orange: var(--accent-light-orange);
-    --accent-light-purple: var(--accent-light-purple);
-    --accent-light-red: var(--accent-light-red);
-    --accent-light-pink: var(--accent-light-pink);
-
-    --accent-dark-green: var(--accent-dark-green);
-    --accent-dark-blue: var(--accent-dark-blue);
-    --accent-dark-yellow: var(--accent-dark-yellow);
-    --accent-dark-orange: var(--accent-dark-orange);
-    --accent-dark-purple: var(--accent-dark-purple);
-    --accent-dark-red: var(--accent-dark-red);
-    --accent-dark-pink: var(--accent-dark-pink);
+    --color-accent-green: var(--color-accent-green);
+    --color-accent-blue: var(--color-accent-blue);
+    --color-accent-yellow: var(--color-accent-yellow);
+    --color-accent-orange: var(--color-accent-orange);
+    --color-accent-purple: var(--color-accent-purple);
+    --color-accent-red: var(--color-accent-red);
+    --color-accent-pink: var(--color-accent-pink);
 }
 
 html,

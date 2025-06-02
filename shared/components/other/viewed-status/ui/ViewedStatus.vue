@@ -1,8 +1,8 @@
 <template>
     <section class="flex items-center">
         <Icon name="carbon:checkmark" v-if="status == 'NOT_VIEWED'"></Icon>
-        <Icon v-else-if="status === 'DENIED'" name="ci:close-md" class="text-[var(--accent-light-red)]"></Icon>
-        <Icon v-else name="carbon:checkmark-outline" :class="{'text-[var(--accent-light-green)]': status == 'ACCEPTED'}" ></Icon>
+        <Icon v-else-if="status === 'DENIED'" name="ci:close-md" class="text-accent-red"></Icon>
+        <Icon v-else name="carbon:checkmark-outline" :class="{'text-accent-green': status == 'ACCEPTED'}" ></Icon>
     </section>
 </template>
 

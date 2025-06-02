@@ -20,19 +20,19 @@ const { color = "pink" } = defineProps<{
 const infoCardColor = computed(() => {
     switch (color) {
         case 'green':
-            return 'hover:bg-[var(--accent-light-green)]'
+            return 'hover:bg-accent-green'
         case 'blue':
-            return 'hover:bg-[var(--accent-light-blue)]'
+            return 'hover:bg-accent-blue'
         case 'yellow':
-            return 'hover:bg-[var(--accent-light-yellow)]'
+            return 'hover:bg-accent-yellow'
         case 'orange':
-            return 'hover:bg-[var(--accent-light-orange)]'
+            return 'hover:bg-accent-orange'
         case 'purple':
-            return 'hover:bg-[var(--accent-light-purple)]'
+            return 'hover:bg-accent-purple'
         case 'red':
-            return 'hover:bg-[var(--accent-light-red)]'
+            return 'hover:bg-accent-red'
         case 'pink':
-            return 'hover:bg-[var(--accent-light-pink)]'
+            return 'hover:bg-accent-pink'
     }
 })
 </script>
