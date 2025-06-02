@@ -3,15 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { ArcElement, Chart, Legend, Tooltip, type ChartData, type ChartOptions } from 'chart.js';
+import { type ChartData, type ChartOptions } from 'chart.js';
 import { Pie } from 'vue-chartjs';
 
 const props = defineProps<{
     complete: number
     price: number
 }>()
-
-Chart.register(ArcElement, Tooltip, Legend)
 
 const data: ChartData<'pie'> = {
     labels: ['Completed', "Price"],
