@@ -50,7 +50,8 @@
       }"
         class="bg-[var(--accent-light-green)] hover:opacity-90 p-4 rounded-xl text-primary-bg cursor-pointer transition active:scale-90">Accept</button>
     </section>
-    <section class="mt-8 flex flex-col gap-2" v-else-if="debt.status === DebtStatus.ACCEPTED">
+    <section class="mt-8 flex flex-col gap-2"
+      v-else-if="debt.status === DebtStatus.ACCEPTED && completeRequestsTape.acceptedCompleteRequests(debt.id)?.length">
       <h4 class="text-sm">{{ t('history') }}</h4>
       <FeatureCompleteRequestsTape :debt :profile-id="profile.id"></FeatureCompleteRequestsTape>
     </section>
@@ -81,10 +82,11 @@ const id = parseInt(route.params.id as string)
 Chart.register(...registerables)
 
 onMounted(async () => {
-  profile.load()
+  await profile.load()
   const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
   if (result.status == 'success') {
     debt.value = result.data
+    completeRequestsTape.addCompleteRequests(debt.value.id, debt.value.completeRequests)
   }
 })
 
