@@ -22,9 +22,9 @@
     </section>
     <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
       :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
-    <FeatureCompleteRequestAcceptMenu v-model="debt"
+    <FeatureDebtAcceptMenu v-model="debt"
       v-if="debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED">
-    </FeatureCompleteRequestAcceptMenu>
+    </FeatureDebtAcceptMenu>
     <section class="mt-8 flex flex-col gap-2" v-else-if="debt.status === DebtStatus.ACCEPTED">
       <h4 class="text-sm">New</h4>
       <FeatureCompleteRequestsTape mode="other" v-if="notViewedAndIgnoredRequests" :debt
