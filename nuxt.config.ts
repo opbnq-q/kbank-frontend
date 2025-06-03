@@ -62,7 +62,8 @@ export default defineNuxtConfig({
             './shared/**/*.ts',
             './features/**/*.ts',
             './widgets/**/*.ts',
-            './entities/**/*.ts'
+            './entities/**/*.ts',
+            './shared/composables/*.ts'
         ]
     },
     runtimeConfig: {

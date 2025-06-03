@@ -1,5 +1,3 @@
-import { TokenManager } from '~/shared/lib/token-manager.lib'
-
 export interface LoginFormState {
     email: string
     password: string
@@ -8,6 +6,8 @@ export interface LoginFormState {
         password: string
     }
 }
+
+const tokenManager = useTokenManager()
 
 export const useLoginFormStore = defineStore('login-form-store', {
     state: (): LoginFormState => ({
@@ -47,7 +47,7 @@ export const useLoginFormStore = defineStore('login-form-store', {
             })
             if (!result) return;
             if (result.status == 'success') {
-                await TokenManager.set(result.data)
+                await tokenManager.set(result.data)
                 navigateTo('/')
             }
         }

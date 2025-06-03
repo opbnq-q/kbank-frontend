@@ -1,4 +1,4 @@
-import { TokenManager } from "~/shared/lib/token-manager.lib";
+const tokenManager = useTokenManager()
 
 export interface MyProfileStoreState extends FullUser {
 
@@ -23,7 +23,7 @@ export const useMyProfile = defineStore('my-profile', {
         },
 
         async logout() {
-            await TokenManager.remove()
+            await tokenManager.remove()
             navigateTo('/auth')
         },
 

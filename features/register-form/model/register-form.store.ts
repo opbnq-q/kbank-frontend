@@ -1,4 +1,4 @@
-import { TokenManager } from '~/shared/lib/token-manager.lib'
+const tokenManager = useTokenManager()
 
 export interface RegisterFormState {
     email: string
@@ -84,7 +84,7 @@ export const useRegisterFormStore = defineStore('register-form-store', {
             })
             if (!result) return;
             if (result.status == 'success') {
-                await TokenManager.set(result.data)
+                await tokenManager.set(result.data)
                 return navigateTo('/')
             }
         }

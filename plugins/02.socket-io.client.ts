@@ -1,7 +1,5 @@
 import { io, Socket } from "socket.io-client"
 import { useCompleteRequestsTapeStore } from "~/features/complete-requests-tape/model/complete-requests-tape.store"
-import { TokenManager } from "~/shared/lib/token-manager.lib"
-
 
 export interface WsResponse {
     balance: number
@@ -22,7 +20,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     let ws: Socket | null = null
 
     const initializeWebSocket = async () => {
-        const token = await TokenManager.get()
+        const tokenManager = useTokenManager()
+        const token = await tokenManager.get()
         if (!token) {
             setTimeout(initializeWebSocket, 1000)
             return

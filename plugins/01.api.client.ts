@@ -1,4 +1,4 @@
-import { TokenManager } from "~/shared/lib/token-manager.lib"
+const tokenManager = useTokenManager()
 
 export default defineNuxtPlugin(async () => {
     const loadingModal = useLoadingModal()
@@ -7,7 +7,7 @@ export default defineNuxtPlugin(async () => {
     const ofetch = $fetch.create({
         baseURL: config.public.apiBase as string,
         onRequest: async ({ options }) => {
-            const token = await TokenManager.get()
+            const token = await tokenManager.get()
             if (token) options.headers.append('Authorization', token);
             loadingModal.summon();
         },
