@@ -26,15 +26,18 @@
       v-if="debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED">
     </FeatureDebtAcceptMenu>
     <section class="mt-8 flex flex-col gap-2" v-else-if="debt.status === DebtStatus.ACCEPTED">
-      <h4 class="text-sm">New</h4>
+      <h4 class="text-sm">{{ t('new') }}</h4>
       <FeatureCompleteRequestsTape mode="other" v-if="notViewedAndIgnoredRequests" :debt
         :profile-id="profile.id"></FeatureCompleteRequestsTape>
-      <h4 class="text-sm">{{ t('history') }}</h4>
+      <SharedEmptyImg v-else />
+      <h4 class="text-sm">{{ t('accepted') }}</h4>
       <FeatureCompleteRequestsTape mode="accepted" v-if="acceptedCompletedRequests" :debt
         :profile-id="profile.id"></FeatureCompleteRequestsTape>
-      <h4 class="text-sm">Denied</h4>
+      <SharedEmptyImg v-else />
+      <h4 class="text-sm">{{ t('denied') }}</h4>
       <FeatureCompleteRequestsTape mode="denied" v-if="deniedCompleteRequests" :debt :profile-id="profile.id">
       </FeatureCompleteRequestsTape>
+      <SharedEmptyImg v-else />
     </section>
   </div>
 </template>

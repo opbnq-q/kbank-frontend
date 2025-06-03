@@ -1,7 +1,8 @@
 <template>
   <div>
     <SharedHeaderText>{{ t('yourDebts') }}</SharedHeaderText>
-    <FeatureDebtsTape></FeatureDebtsTape>
+    <FeatureDebtsTape v-if="debtsTape.debts.length"></FeatureDebtsTape>
+    <SharedEmptyImg v-else></SharedEmptyImg>
     <SharedToUpButton v-if="debtsTape.page >= debtsTape.totalPages && debtsTape.debts.length > 5"></SharedToUpButton>
   </div>
 </template>

@@ -1,13 +1,13 @@
 <template>
   <section class="w-full overflow-hidden relative flex items-center touch-pan-y justify-center h-20 select-none">
-    <h1 class="absolute left-0 opacity-80">Deny</h1>
+    <h1 class="absolute left-0 opacity-80">{{ t('deny') }}</h1>
     <div ref="swipeMenu"
       class="bg-secondary-bg flex left-0 transition gap-4 items-center border-[1px] border-primary-border rounded-xl p-4 cursor-col-resize relative z-10">
       <Icon name="carbon:arrow-left" />
-      <h1>Move</h1>
+      <h1>{{ t('move') }}</h1>
       <Icon name="carbon:arrow-right" />
     </div>
-    <h1 class="absolute right-0 opacity-80">Accept</h1>
+    <h1 class="absolute right-0 opacity-80">{{ t('accept') }}</h1>
   </section>
 </template>
 
@@ -15,6 +15,8 @@
 const debt = defineModel<Debt>({ required: true })
 import { deny } from '../api/deny.api';
 import { accept } from '../api/accept.api';
+
+const { t } = useI18n()
 
 const debtsTape = useDebtsTapeStore()
 

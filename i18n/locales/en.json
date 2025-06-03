@@ -41,5 +41,12 @@
     "youHaveNewDebt": "You have new debt!",
     "go": "Go",
     "debtor": "Debtor",
-    "lender": "Lender"
+    "lender": "Lender",
+    "nothing": "There is nothing here",
+    "deny": "Deny",
+    "accept": "Accept",
+    "denied": "Denied",
+    "accepted": "Accepted",
+    "new": "New",
+    "move": "Move it!"
 }
