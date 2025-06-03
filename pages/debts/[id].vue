@@ -23,11 +23,11 @@
     <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
       :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
     <FeatureDebtAcceptMenu v-model="debt"
-      v-if="debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED">
+      v-if="(debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED) && profile.id == debt.debtor.id">
     </FeatureDebtAcceptMenu>
     <section class="mt-8 flex flex-col gap-2" v-else-if="debt.status === DebtStatus.ACCEPTED">
       <h4 class="text-sm">{{ t('new') }}</h4>
-      <FeatureCompleteRequestsTape mode="other" v-if="notViewedAndIgnoredRequests" :debt
+      <FeatureCompleteRequestsTape @accept="updateProgressBar" mode="other" v-if="notViewedAndIgnoredRequests" :debt
         :profile-id="profile.id"></FeatureCompleteRequestsTape>
       <SharedEmptyImg v-else />
       <h4 class="text-sm">{{ t('accepted') }}</h4>
@@ -48,6 +48,12 @@ import { useCompleteRequestsTapeStore } from '~/features/complete-requests-tape/
 definePageMeta({
   middleware: ['auth-middleware']
 })
+
+const updateProgressBar = (request: CompleteRequest) => {
+  if (!debt.value) return;
+  debt.value.complete += request.price
+  debt.value.isCompleted = debt.value.price >= debt.value.complete
+}
 
 const profile = useMyProfile()
 const completeRequestsTape = useCompleteRequestsTapeStore()

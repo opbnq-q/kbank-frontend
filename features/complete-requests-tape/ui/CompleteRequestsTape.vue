@@ -1,9 +1,14 @@
 <template>
   <ClientOnly>
-    <LazyEntityCompleteRequestCard v-for="cr in debts" :complete-request="cr" :currency-title="debt.currency.title"
+    <LazyEntityCompleteRequestCard v-for="cr in completeRequests" :complete-request="cr" :currency-title="debt.currency.title"
       :lender-id="debt.lender.id" :profile-id="profileId" :standard-units="debt.currency.standardUnits"
-      @accept="completeRequestsTape.accept(debt.id, cr.id)"
-      @deny="completeRequestsTape.deny(debt.id, cr.id)"
+      @accept="() => {
+        emits('accept', completeRequestsTape.debtIdCompleteRequestMap.get(debt.id)!.find(el => el.id == cr.id)!)
+        completeRequestsTape.accept(debt.id, cr.id)
+      }"
+      @deny="() => {
+        completeRequestsTape.deny(debt.id, cr.id)
+      }"
       >
     </LazyEntityCompleteRequestCard>
   </ClientOnly>
@@ -12,6 +17,9 @@
 <script setup lang="ts">
 import { useCompleteRequestsTapeStore } from '../model/complete-requests-tape.store';
 
+const emits = defineEmits<{
+  (e: "accept", request: CompleteRequest): void
+}>()
 
 const props = defineProps<{
   debt: Debt
@@ -21,7 +29,7 @@ const props = defineProps<{
 
 const completeRequestsTape = useCompleteRequestsTapeStore()
 onMounted(() => completeRequestsTape.load(props.debt.id))
-const debts = computed(() => {
+const completeRequests = computed(() => {
   switch (props.mode) {
     case 'accepted':
       return completeRequestsTape.acceptedCompleteRequests(props.debt.id)
@@ -31,4 +39,5 @@ const debts = computed(() => {
       return completeRequestsTape.ignoredAndNotViewedRequests(props.debt.id)
   }
 })
+
 </script>
