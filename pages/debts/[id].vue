@@ -7,7 +7,8 @@
         <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
       <FeatureCompleteRequestsBar :standard-units="debt.currency.standardUnits"
-        :complete-requests="<[]>completeRequestsTape.acceptedCompleteRequests(debt.id)" class="flex w-full justify-center lg:justify-end max-lg:mb-4"
+        :complete-requests="<[]>completeRequestsTape.acceptedCompleteRequests(debt.id)"
+        class="flex w-full justify-center lg:justify-end max-lg:mb-4"
         v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests"></FeatureCompleteRequestsBar>
     </div>
     <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
@@ -22,6 +23,8 @@
     </section>
     <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
       :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
+    <FeatureDebtsChart v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests"
+      :debt="debt" :complete-requests-tape="completeRequestsTape" class="mt-4" />
     <FeatureDebtAcceptMenu v-model="debt"
       v-if="(debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED) && profile.id == debt.debtor.id">
     </FeatureDebtAcceptMenu>
@@ -31,8 +34,8 @@
         :profile-id="profile.id"></FeatureCompleteRequestsTape>
       <SharedEmptyImg v-else />
       <h4 class="text-sm">{{ t('accepted') }}</h4>
-      <FeatureCompleteRequestsTape mode="accepted" v-if="acceptedCompletedRequests" :debt
-        :profile-id="profile.id"></FeatureCompleteRequestsTape>
+      <FeatureCompleteRequestsTape mode="accepted" v-if="acceptedCompletedRequests" :debt :profile-id="profile.id">
+      </FeatureCompleteRequestsTape>
       <SharedEmptyImg v-else />
       <h4 class="text-sm">{{ t('denied') }}</h4>
       <FeatureCompleteRequestsTape mode="denied" v-if="deniedCompleteRequests" :debt :profile-id="profile.id">
@@ -43,8 +46,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useCompleteRequestsTapeStore } from '~/features/complete-requests-tape/model/complete-requests-tape.store'
-
 definePageMeta({
   middleware: ['auth-middleware']
 })
@@ -66,7 +67,6 @@ const route = useRoute()
 const { $ofetch } = useNuxtApp()
 const id = parseInt(route.params.id as string)
 
-
 onMounted(async () => {
   await profile.load()
   const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
@@ -80,5 +80,3 @@ const acceptedCompletedRequests = computed(() => debt.value && completeRequestsT
 const deniedCompleteRequests = computed(() => debt.value && completeRequestsTape.deniedCompleteRequests(debt.value.id)?.length)
 const notViewedAndIgnoredRequests = computed(() => debt.value && completeRequestsTape.ignoredAndNotViewedRequests(debt.value.id)?.length)
 </script>
-
-<style scoped></style>
