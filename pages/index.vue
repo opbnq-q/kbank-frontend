@@ -3,6 +3,7 @@
     <ClientOnly>
       <WidgetMyProfile></WidgetMyProfile>
     </ClientOnly>
+    <div class="bg-red-50 h-20 rounded-full"></div>
   </main>
 </template>
 
