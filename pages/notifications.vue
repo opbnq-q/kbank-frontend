@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <SharedInfoCard v-for="(notification, index) in n.notifications">
-      {{ index + 1 }} {{ notification.message }}
+  <div class="flex flex-col w-full gap-4">
+    <SharedInfoCard v-if="n.len" v-for="notification in n.notifications">
+      {{ notification.message }}
+      <SharedInternalLink :to="notification.link" v-if="notification.link" class="mt-1">{{ t('go') }}
+      </SharedInternalLink>
     </SharedInfoCard>
+    <SharedEmptyImg v-else></SharedEmptyImg>
   </div>
 </template>
 
@@ -11,8 +14,7 @@ definePageMeta({
   middleware: 'auth-middleware'
 })
 const n = useNotificationsStore()
+const { t } = useI18n()
 </script>
 
-<style>
-
-</style>
+<style></style>
