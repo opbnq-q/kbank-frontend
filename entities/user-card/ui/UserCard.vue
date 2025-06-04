@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-secondary-bg border-primary-border border-[1px] rounded-xl p-4">
+    <SharedInfoCard>
         <h1 class="text-lg overflow-ellipsis overflow-hidden h-8">{{ name }}</h1>
         <h2 class="h-6 mb-2 overflow-ellipsis overflow-hidden">{{ balance }} {{ t('standardUnit') }}</h2>
         <SharedInternalLink :to="`/users/${id}`">{{ t('go') }}</SharedInternalLink>
-    </div>
+    </SharedInfoCard>
 </template>
 
 <script setup lang="ts">

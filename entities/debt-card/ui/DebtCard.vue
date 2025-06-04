@@ -1,6 +1,6 @@
 <template>
-    <article
-        class="w-full  max-w-80 relative border-[1px] gap-4 flex-col flex p-4 border-primary-border bg-secondary-bg rounded-2xl min-h-40">
+    <SharedInfoCard
+        class="w-full max-w-80 relative gap-4 flex-col flex min-h-40">
         <NuxtLink :to="`/debts/${props.id}`" class="hover:underline">
             <h1 class="text-xl h-6 overflow-hidden text-ellipsis ">{{ props.title }}</h1>
             <h2 class="h-6 overflow-hidden text-ellipsis">{{ props.description }}</h2>
@@ -10,7 +10,7 @@
             <h3>{{ props.name }}</h3>
             <SharedViewedStatus :status></SharedViewedStatus>
         </div>
-    </article>
+    </SharedInfoCard>
 </template>
 
 <script setup lang="ts">

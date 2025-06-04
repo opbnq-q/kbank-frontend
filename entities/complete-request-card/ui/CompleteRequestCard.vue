@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 relative border-[1px] border-primary-border bg-secondary-bg rounded-xl">
+    <SharedInfoCard class="relative">
         <h1 class="text-lg">{{ completeRequest.title }}</h1>
         <h2 class="text-wrap">{{ completeRequest.price }} {{ currencyTitle }} = {{ completeRequest.price * standardUnits }} {{
             t('standardUnit') }}</h2>
@@ -14,10 +14,12 @@
             </SharedBaseButton>
         </div>
         <SharedViewedStatus :status="completeRequest.status" class="absolute right-4 bottom-4"></SharedViewedStatus>
-    </div>
+    </SharedInfoCard>
 </template>
 
 <script setup lang="ts">
+import { SharedInfoCard } from '#components';
+
 const { t } = useI18n()
 
 defineProps<{
