@@ -48,5 +48,12 @@
     "denied": "Denied",
     "accepted": "Accepted",
     "new": "New",
-    "move": "Move it!"
+    "move": "Move it!",
+    "createNewDebt": {
+        "title": "Title",
+        "description": "Description",
+        "findOr": "Find or",
+        "search": "Search",
+        "createNewCurrency": "create new debt"
+    }
 }

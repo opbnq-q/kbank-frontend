@@ -5,8 +5,8 @@
     </section>
     <section class="w-full pt-4">
       <div class="w-full flex justify-between mb-2">
-        <SharedBaseButton @click="prevStep">Prev</SharedBaseButton>
-        <SharedBaseButton @click="nextStep">Next</SharedBaseButton>
+        <SharedBaseButton @click="prevStep" square :disabled="p == 0"><Icon name="carbon:arrow-left"></Icon></SharedBaseButton>
+        <SharedBaseButton @click="nextStep" square><Icon name="carbon:arrow-right"></Icon></SharedBaseButton>
       </div>
       <span>
         <SharedProgressBar :complete="p + 1" :price="count" hide-s-u></SharedProgressBar>

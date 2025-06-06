@@ -7,10 +7,9 @@
         border-[1px] border-primary-border transition 
         hover:bg-primary-hover active:bg-secondary-bg 
         active:scale-90
-        cursor-pointer flex items-center justify-center`, { 'h-10 font-bold': large, 'aspect-square': square }]">
+        cursor-pointer flex items-center justify-center`, { 'h-10 font-bold': large, 'aspect-square': square, 'opacity-80': disabled }]">
         <Icon v-if="back" name="carbon:arrow-left"></Icon>
         <slot v-else></slot>
-
     </button>
 </template>
 
@@ -21,5 +20,6 @@ defineProps<{
     large?: boolean
     square?: boolean
     back?: boolean
+    disabled?: boolean
 }>()
 </script>
