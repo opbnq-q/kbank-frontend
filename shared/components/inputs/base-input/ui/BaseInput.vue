@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="relative">
-            <input :type="type" v-model="inputValue" @focus="isFocused = true" @blur="isFocused = false" :name="label"
+            <input :type="type" v-model="inputValue" @focus="() => { isFocused = true; emits('focus') }"
+                @blur="() => { isFocused = false; emits('blur') }" :name="label"
                 class="bg-secondary-bg px-2 py-1 rounded-lg border-[1px] border-primary-border outline-none w-full focus:bg-primary-focus transition"
                 :required :pattern :maxlength :minlength :max />
             <label :class="[
@@ -35,4 +36,9 @@ const isFocused = ref(false)
 const inputValue = defineModel()
 
 const isActive = computed(() => isFocused.value || inputValue.value !== '')
+
+const emits = defineEmits<{
+    (e: "focus"): void
+    (e: "blur"): void
+}>()
 </script>
