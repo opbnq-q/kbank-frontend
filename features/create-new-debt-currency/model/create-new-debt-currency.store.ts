@@ -6,6 +6,7 @@ export interface CreateNewDebtCurrencyStoreState {
     search: string
     totalPages: number
     page: number
+    price: number
     debounceTimeout: ReturnType<typeof setTimeout> | null
 }
 
@@ -15,6 +16,7 @@ export const useCreateNewDebtCurrencyStore = defineStore('create-new-debt-curren
         currencies: [],
         totalPages: 0,
         search: '',
+        price: 0,
         page: 0,
         debounceTimeout: null
     }),

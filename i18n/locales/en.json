@@ -55,6 +55,7 @@
         "findOr": "Find or",
         "search": "Search",
         "createNewCurrency": "create new debt",
-        "findDebtor": "Find a debtor"
+        "findDebtor": "Find a debtor",
+        "price": "Цена"
     }
 }

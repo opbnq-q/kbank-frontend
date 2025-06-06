@@ -55,6 +55,7 @@
         "findOr": "Найдите или",
         "createNewCurrency": "создайте новую валюту",
         "search": "Поиск",
-        "findDebtor": "Кому вручить должок?"
+        "findDebtor": "Кому вручить должок?",
+        "price": "Price"
     }
 }

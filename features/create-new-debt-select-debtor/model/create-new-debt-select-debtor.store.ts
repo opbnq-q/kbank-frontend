@@ -16,7 +16,7 @@ export const useCreateNewDebtSelectDebtorStore = defineStore('create-new-debt-se
         search: '',
         totalPages: 0,
         page: 0,
-        debounceTimeout: null
+        debounceTimeout: null,
     }),
 
     actions: {

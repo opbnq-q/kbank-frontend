@@ -1,5 +1,5 @@
 <template>
-  <div v-if="debt">
+  <div v-if="debt && debt.currency">
     <div :class="{ 'grid grid-cols-2 gap-4': acceptedCompletedRequests }" class="max-lg:flex max-lg:flex-col">
       <section>
         <SharedHeaderText class="text-start">{{ debt.title }}</SharedHeaderText>
