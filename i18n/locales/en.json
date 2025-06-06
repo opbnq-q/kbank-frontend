@@ -54,6 +54,7 @@
         "description": "Description",
         "findOr": "Find or",
         "search": "Search",
-        "createNewCurrency": "create new debt"
+        "createNewCurrency": "create new debt",
+        "findDebtor": "Find a debtor"
     }
 }

@@ -54,6 +54,7 @@
         "description": "Описание долга",
         "findOr": "Найдите или",
         "createNewCurrency": "создайте новую валюту",
-        "search": "Поиск"
+        "search": "Поиск",
+        "findDebtor": "Кому вручить должок?"
     }
 }

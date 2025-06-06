@@ -6,7 +6,7 @@
     <section class="w-full pt-4">
       <div class="w-full flex justify-between mb-2">
         <SharedBaseButton @click="prevStep" square :disabled="p == 0"><Icon name="carbon:arrow-left"></Icon></SharedBaseButton>
-        <SharedBaseButton @click="nextStep" square><Icon name="carbon:arrow-right"></Icon></SharedBaseButton>
+        <SharedBaseButton @click="nextStep" square :disabled="disableNextButton(p + 1) && p < count"><Icon name="carbon:arrow-right"></Icon></SharedBaseButton>
       </div>
       <span>
         <SharedProgressBar :complete="p + 1" :price="count" hide-s-u></SharedProgressBar>
@@ -18,6 +18,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
+const { disableNextButton = p => false } = defineProps<{
+  disableNextButton?: (page: number) => boolean
+}>()
+
 const slots = defineSlots()
 
 const count = computed(() => Object.keys(slots).length)
@@ -25,7 +29,7 @@ const count = computed(() => Object.keys(slots).length)
 const p = ref(0)
 
 function nextStep() {
-  if (p.value < count.value - 1) {
+  if (p.value < count.value - 1 && !disableNextButton(p.value + 1)) {
     p.value++
   }
 }

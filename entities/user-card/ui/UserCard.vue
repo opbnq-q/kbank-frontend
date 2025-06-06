@@ -1,8 +1,8 @@
 <template>
     <SharedInfoCard>
-        <h1 class="text-lg overflow-ellipsis overflow-hidden h-8">{{ name }}</h1>
-        <h2 class="h-6 mb-2 overflow-ellipsis overflow-hidden">{{ balance }} {{ t('standardUnit') }}</h2>
-        <SharedInternalLink :to="`/users/${id}`">{{ t('go') }}</SharedInternalLink>
+        <h1 class="text-lg overflow-ellipsis overflow-hidden">{{ name }}</h1>
+        <h2 class="h-6 overflow-ellipsis overflow-hidden">{{ balance }} {{ t('standardUnit') }}</h2>
+        <SharedInternalLink  class="mt-2" v-if="!findGo" :to="`/users/${id}`">{{ t('go') }}</SharedInternalLink>
     </SharedInfoCard>
 </template>
 
@@ -13,5 +13,6 @@ defineProps<{
     name: string
     id: number | string
     balance: string | number
+    findGo?: boolean
 }>()
 </script>

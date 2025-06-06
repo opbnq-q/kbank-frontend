@@ -30,7 +30,7 @@ export const useCreateNewDebtCurrencyStore = defineStore('create-new-debt-curren
             }
         },
         handleInput() {
-            this.page = 0
+            this.page = 1
             this.currencies = []
             if (this.debounceTimeout) clearTimeout(this.debounceTimeout);
             this.debounceTimeout = setTimeout(() => {
