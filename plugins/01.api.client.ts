@@ -3,7 +3,7 @@ const tokenManager = useTokenManager()
 export default defineNuxtPlugin(async () => {
     const loadingModal = useLoadingModal()
     const config = useRuntimeConfig()
-    const errorModal = useErrorModal()
+    const errorModal = useErrorModalStore()
     const ofetch = $fetch.create({
         baseURL: config.public.apiBase as string,
         onRequest: async ({ options }) => {

@@ -23,7 +23,7 @@ const isAuthRoute = computed(() => {
   return route.path === `/${locale.value}/auth`
 })
 
-const errorModal = useErrorModal()
+const errorModal = useErrorModalStore()
 errorModal.$subscribe((mutation, state) => {
   if (!state.show) state.message = ''
 })

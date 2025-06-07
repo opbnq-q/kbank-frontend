@@ -1,7 +1,7 @@
 <template>
   <SharedStepNavigator :disable-next-button style="height: calc(100dvh - 100px);" @scroll-end="scrollEnd">
     <template #1>
-      <FeatureCreateNewDebtTextForm class="mt-6" />
+      <FeatureCreateNewDebtTextForm />
     </template>
     <template #2>
       <FeatureCreateNewDebtCurrency />
@@ -10,9 +10,10 @@
       <FeatureCreateNewDebtSelectDebtor :profile-id />
     </template>
     <template #4>
-      <div class="w-full items-center justify-between flex flex-col h-full">
-        <SharedBaseInput :placeholder="t('createNewDebt.price')" v-model="createNewDebtCurrency.price" type="number"></SharedBaseInput>
-        <SharedBaseButton class="w-full" @click="onSubmit">Submit</SharedBaseButton>
+      <div class="w-full items-center justify-end gap-4 flex flex-col h-full">
+        <SharedBaseInput class="w-full" :placeholder="t('createNewDebt.price')" v-model="createNewDebtCurrency.price"
+          type="number"></SharedBaseInput>
+        <SharedBaseButton class="w-full" @click="create">Submit</SharedBaseButton>
       </div>
     </template>
   </SharedStepNavigator>
@@ -49,11 +50,16 @@ const scrollEndDebtors = () => {
 
 const disableNextButton = computed(() => {
   return (page: number) => {
-    return (!createNewDebtTextForm.title && page == 1) || (!createNewDebtCurrency.currencyId && page == 2) || (!createNewDebtSelectDebtor.debtorId && page == 3)
+    return (
+      (!createNewDebtTextForm.title && page == 1) ||
+      (!createNewDebtCurrency.currencyId && page == 2) ||
+      (!createNewDebtSelectDebtor.debtorId && page == 3) ||
+      (page == 4)
+    )
   }
 })
 
-async function onSubmit() {
+async function create() {
   const result = await createNewDebt({
     currencyId: createNewDebtCurrency.currencyId,
     debtorId: createNewDebtSelectDebtor.debtorId,

@@ -10,7 +10,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const { public: { wsBase } } = useRuntimeConfig()
     const { $ofetch } = useNuxtApp()
 
-    const errorModal = useErrorModal()
+    const errorModal = useErrorModalStore()
     const profileStore = useProfileStore()
     const debtsTapeStore = useDebtsTapeStore()
     const notificationsStore = useNotificationsStore()

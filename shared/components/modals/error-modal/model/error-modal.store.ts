@@ -2,7 +2,7 @@ export interface ErrorModalStoreState {
     show: boolean
     message: string | number
 }
-export const useErrorModal = defineStore('error-modal', {
+export const useErrorModalStore = defineStore('error-modal', {
     state: (): ErrorModalStoreState => ({
         show: false,
         message: ''

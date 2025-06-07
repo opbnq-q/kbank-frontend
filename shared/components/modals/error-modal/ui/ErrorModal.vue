@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-const errorModal = useErrorModal()
+const errorModal = useErrorModalStore()
 const { t } = useI18n()
 </script>
 
