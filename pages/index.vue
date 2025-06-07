@@ -1,7 +1,7 @@
 <template>
   <main class="w-full">
     <ClientOnly>
-      <WidgetMyProfile></WidgetMyProfile>
+      <WidgetProfile></WidgetProfile>
     </ClientOnly>
   </main>
 </template>

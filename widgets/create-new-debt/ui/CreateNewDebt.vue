@@ -7,7 +7,7 @@
       <FeatureCreateNewDebtCurrency />
     </template>
     <template #3>
-      <FeatureCreateNewDebtSelectDebtor />
+      <FeatureCreateNewDebtSelectDebtor :profile-id />
     </template>
     <template #4>
       <div class="w-full items-center justify-between flex flex-col h-full">
@@ -19,8 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useCreateNewDebtSelectDebtorStore } from '~/features/create-new-debt-select-debtor/model/create-new-debt-select-debtor.store'
-
 const createNewDebtTextForm = useCreateNewDebtTextFormStore()
 const createNewDebtCurrency = useCreateNewDebtCurrencyStore()
 const createNewDebtSelectDebtor = useCreateNewDebtSelectDebtorStore()
@@ -68,7 +66,14 @@ async function onSubmit() {
       message: "You have created a new debt!",
       link: `/debts/${result.data.id}`
     })
+    createNewDebtCurrency.$reset()
+    createNewDebtSelectDebtor.$reset()
+    createNewDebtTextForm.$reset()
     navigateTo(`/debts/${result.data.id}`)
   }
 }
+
+defineProps<{
+  profileId: number
+}>()
 </script>

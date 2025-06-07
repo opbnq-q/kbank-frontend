@@ -7,8 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import { SharedInfoCard } from '#components';
-
 defineProps<{
     title: string
     description?: string

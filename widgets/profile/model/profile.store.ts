@@ -5,7 +5,7 @@ export interface MyProfileStoreState extends FullUser {
 }
 
 
-export const useMyProfile = defineStore('my-profile', {
+export const useProfileStore = defineStore('my-profile', {
     state: (): MyProfileStoreState => ({
         debts: [],
         email: '',
@@ -30,6 +30,5 @@ export const useMyProfile = defineStore('my-profile', {
         patchBalance(b: number) {
             this.balance = b
         },
-
     }
 })

@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { SharedInfoCard } from '#components';
-
 const { t } = useI18n()
 
 defineProps<{

@@ -56,7 +56,7 @@ const updateProgressBar = (request: CompleteRequest) => {
   debt.value.isCompleted = debt.value.price >= debt.value.complete
 }
 
-const profile = useMyProfile()
+const profile = useProfileStore()
 const completeRequestsTape = useCompleteRequestsTapeStore()
 
 const { t } = useI18n()

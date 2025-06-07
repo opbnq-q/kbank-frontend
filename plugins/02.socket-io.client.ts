@@ -1,5 +1,4 @@
 import { io, Socket } from "socket.io-client"
-import { useCompleteRequestsTapeStore } from "~/features/complete-requests-tape/model/complete-requests-tape.store"
 
 export interface WsResponse {
     balance: number
@@ -12,7 +11,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const { $ofetch } = useNuxtApp()
 
     const errorModal = useErrorModal()
-    const profileStore = useMyProfile()
+    const profileStore = useProfileStore()
     const debtsTapeStore = useDebtsTapeStore()
     const notificationsStore = useNotificationsStore()
     const completeRequestsTape = useCompleteRequestsTapeStore()

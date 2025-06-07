@@ -1,4 +1,3 @@
-import { getDebtors } from "../api/get-debtors.api"
 
 export interface CreateNewDebtSelectDebtorStoreState {
     debtorId: number

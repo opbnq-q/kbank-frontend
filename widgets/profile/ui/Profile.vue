@@ -17,7 +17,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-const profileStore = useMyProfile()
+const profileStore = useProfileStore()
 
 onMounted(profileStore.load)
 </script>

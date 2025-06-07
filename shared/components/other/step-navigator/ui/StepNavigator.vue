@@ -16,8 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 const { disableNextButton = p => false } = defineProps<{
   disableNextButton?: (page: number) => boolean
 }>()

@@ -1,5 +1,3 @@
-import { getCurrencies } from "../api/get-currencies.api"
-
 export interface CreateNewDebtCurrencyStoreState {
     currencyId: number
     currencies: Currency[],

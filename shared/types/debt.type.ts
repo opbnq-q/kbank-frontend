@@ -1,5 +1,3 @@
-import type { CompleteRequest } from "./complete-request.type";
-
 export interface Debt {
     id: number;
     title: string;

@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCreateNewDebtCurrencyStore } from '../model/create-new-debt-currency.store';
-
 const createNewDebtCurrency = useCreateNewDebtCurrencyStore()
 
 const { t } = useI18n()

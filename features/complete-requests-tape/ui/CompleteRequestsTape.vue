@@ -15,8 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCompleteRequestsTapeStore } from '../model/complete-requests-tape.store';
-
 const emits = defineEmits<{
   (e: "accept", request: CompleteRequest): void
 }>()
