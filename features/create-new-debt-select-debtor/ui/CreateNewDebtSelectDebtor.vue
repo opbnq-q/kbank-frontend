@@ -4,7 +4,7 @@
             v-model="createNewDebtSelectDebtor.search" @input="createNewDebtSelectDebtor.handleInput"></SharedBaseInput>
         <ul class="mt-6 flex flex-col gap-4" v-show="filtered.length">
             <ClientOnly>
-                <div v-for="debtor in filtered" class="cursor-pointer"
+                <div v-for="debtor in filtered" v-show="createNewDebtSelectDebtor.search && filtered.length" class="cursor-pointer"
                     :class="{ 'p-[1px] bg-linear-to-br from-accent-green to-accent-blue rounded-xl': debtor.id == createNewDebtSelectDebtor.debtorId }">
                     <LazyEntityUserCard :class="{ 'border-none': debtor.id == createNewDebtSelectDebtor.debtorId }"
                         @click="createNewDebtSelectDebtor.debtorId = debtor.id" find-go :key="debtor.email"

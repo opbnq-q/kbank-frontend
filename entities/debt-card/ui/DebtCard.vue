@@ -1,6 +1,8 @@
 <template>
     <SharedInfoCard
-        class="w-full max-w-80 relative gap-4 flex-col flex min-h-40">
+        class="w-full relative gap-4 flex-col flex min-h-40"
+        :class="{'max-w-80': !wFull}"
+        >
         <NuxtLink :to="`/debts/${props.id}`" class="hover:underline">
             <h1 class="text-xl h-6 overflow-hidden text-ellipsis ">{{ props.title }}</h1>
             <h2 class="h-6 overflow-hidden text-ellipsis">{{ props.description }}</h2>
@@ -22,6 +24,7 @@ const props = defineProps<{
     complete: number
     name: string
     status: DebtStatus
+    wFull?: boolean
 }>()
 
 </script>
