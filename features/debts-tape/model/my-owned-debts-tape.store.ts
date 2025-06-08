@@ -1,29 +1,31 @@
-export interface DebtsTapeStoreState {
-    debts: Debt[]
+import { getMyOwnedDebts } from "../api/get-my-owned-debts.api"
+
+export interface MyOwnedDebtsTapeStoreState {
+    myOwnedDebts: Debt[]
     totalPages: number
     page: number
 }
 
-export const useDebtsTapeStore = defineStore('debt-store', {
-    state: (): DebtsTapeStoreState => ({
-        debts: [],
+export const useOwnedDebtsTapeStore = defineStore('my-owned-debt-store', {
+    state: (): MyOwnedDebtsTapeStoreState => ({
+        myOwnedDebts: [],
         page: 0,
         totalPages: 0,
     }),
     actions: {
-        async loadMyDebts() {
-           const result = await getMyDebts(++this.page)
+        async loadMyOwnedDebts() {
+           const result = await getMyOwnedDebts(++this.page)
            if (result) {
                 this.totalPages = result.meta.totalPages
                 this.addDebts(result.data)
            }
         },
         addDebts(debts: Debt[]) {
-            this.debts = [...debts, ...this.debts];
+            this.myOwnedDebts = [...debts, ...this.myOwnedDebts];
             this.unique()
         },
         unique() {
-            this.debts = this.debts.reduce((acc: Debt[], d: Debt) => {
+            this.myOwnedDebts = this.myOwnedDebts.reduce((acc: Debt[], d: Debt) => {
                 if (acc.find(accD => d.id == accD.id)) {
                     return acc;
                 }
@@ -31,7 +33,7 @@ export const useDebtsTapeStore = defineStore('debt-store', {
             }, [] as Debt[])
         },
         changeStatusById(id: number, newStatus: DebtStatus) {
-            this.debts = this.debts.map(d => ({
+            this.myOwnedDebts = this.myOwnedDebts.map(d => ({
                 ...d,
                 status: id == d.id? newStatus : d.status
             }))

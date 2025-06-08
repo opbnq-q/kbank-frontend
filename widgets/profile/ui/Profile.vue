@@ -7,7 +7,7 @@
             <SharedInfoCard class="w-full" color="blue" to="/profile/my-debts">
                 {{ t('yourDebts') }}
             </SharedInfoCard>
-            <SharedInfoCard class="w-full" color="green">
+            <SharedInfoCard class="w-full" color="green" to="profile/my-owned-debts">
                 {{ t('yourOwnedDebts') }}
             </SharedInfoCard>
         </div>

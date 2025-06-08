@@ -1,4 +1,4 @@
-export const getMyDebts = async (page: number) => {
+export const getMyOwnedDebts = async (page: number) => {
     const { $ofetch } = useNuxtApp()
 
     const result = await $ofetch<ServerResponseTemplate<{
@@ -6,7 +6,7 @@ export const getMyDebts = async (page: number) => {
         meta: {
             totalPages: number
         }
-    }>>('/debts/my', {
+    }>>('/debts/my-owned', {
         query: {
             page
         }
@@ -15,4 +15,3 @@ export const getMyDebts = async (page: number) => {
         return result.data
     }
 }
-

@@ -1,7 +1,7 @@
 <template>
   <div>
     <SharedHeaderText>{{ t('yourDebts') }}</SharedHeaderText>
-    <FeatureDebtsTape v-if="debtsTape.debts.length"></FeatureDebtsTape>
+    <FeatureDebtsTape mode="my" v-if="debtsTape.debts.length"></FeatureDebtsTape>
     <SharedEmptyImg v-else></SharedEmptyImg>
     <SharedToUpButton v-if="debtsTape.page >= debtsTape.totalPages && debtsTape.debts.length > 5"></SharedToUpButton>
   </div>
@@ -19,11 +19,11 @@ const debtsTape = useDebtsTapeStore()
 const windowScroll = useWindowScroll()
 watch(windowScroll.y, () => {
   if (windowScroll.arrivedState.bottom && debtsTape.page < debtsTape.totalPages) {
-    debtsTape.load()
+    debtsTape.loadMyDebts()
   }
 })
 
-onMounted(debtsTape.load)
+onMounted(debtsTape.loadMyDebts)
 </script>
 
 <style></style>

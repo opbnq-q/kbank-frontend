@@ -15,7 +15,7 @@
     </div>
     <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
       :price="debt.price * debt.currency.standardUnits"></SharedProgressBar>
-    <SharedBaseButton v-if="debt.status == DebtStatus.ACCEPTED"
+    <SharedBaseButton v-if="debt.status == DebtStatus.ACCEPTED && profile.id == debt.debtor.id"
       @click="navigateTo(`/complete-requests/new?debtId=${debt.id}`)" class="w-full mt-2">{{ t('repayTheDebt') }}
     </SharedBaseButton>
     <section class="grid grid-cols-2 w-full gap-y-2 gap-x-4 text-sm my-4">
