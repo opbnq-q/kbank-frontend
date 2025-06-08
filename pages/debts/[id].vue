@@ -2,7 +2,9 @@
   <div v-if="debt && debt.currency">
     <div :class="{ 'grid grid-cols-2 gap-4': acceptedCompletedRequests }" class="max-lg:flex max-lg:flex-col">
       <section>
-        <SharedHeaderText class="text-start">{{ debt.title }}</SharedHeaderText>
+        <SharedHeaderText class="text-start flex gap-2 items-center">{{ debt.title }}
+          <SharedViewedStatus :tooltip="debt.status" class="text-[1rem] relative top-0.5" :status="debt.status"></SharedViewedStatus>
+        </SharedHeaderText>
         <h2 class="wrap-break-word text-lg font-semibold">{{ debt.price }} {{ debt.currency.title }}</h2>
         <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
@@ -13,7 +15,9 @@
     </div>
     <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
       :price="debt.price * debt.currency.standardUnits"></SharedProgressBar>
-    <SharedBaseButton @click="navigateTo(`/complete-requests/new?debtId=${debt.id}`)" class="w-full mt-2">{{ t('repayTheDebt') }}</SharedBaseButton>
+    <SharedBaseButton v-if="debt.status == DebtStatus.ACCEPTED"
+      @click="navigateTo(`/complete-requests/new?debtId=${debt.id}`)" class="w-full mt-2">{{ t('repayTheDebt') }}
+    </SharedBaseButton>
     <section class="grid grid-cols-2 w-full gap-y-2 gap-x-4 text-sm my-4">
       <h1>{{ t('debtor') }}</h1>
       <h1>{{ t('lender') }}</h1>
@@ -24,8 +28,8 @@
     </section>
     <EntityCurrencyCard :title="debt.currency.title" :description="debt.currency.description"
       :standard-units="debt.currency.standardUnits"></EntityCurrencyCard>
-    <FeatureDebtsChart v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests"
-      :debt="debt" :complete-requests-tape="completeRequestsTape" class="mt-4" />
+    <FeatureDebtsChart v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests" :debt="debt"
+      :complete-requests-tape="completeRequestsTape" class="mt-4" />
     <FeatureDebtAcceptMenu v-model="debt"
       v-if="(debt.status == DebtStatus.IGNORED || debt.status == DebtStatus.NOT_VIEWED) && profile.id == debt.debtor.id">
     </FeatureDebtAcceptMenu>

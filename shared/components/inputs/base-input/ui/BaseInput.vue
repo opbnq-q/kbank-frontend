@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
     placeholder?: string
     label?: string
     type?: "number" | "text" | "email" | "password"
@@ -29,13 +29,18 @@ defineProps<{
     minlength?: string
     max?: string
     error?: string
+    default?: string
 }>()
 
 const isFocused = ref(false)
 
-const inputValue = defineModel()
+const inputValue = defineModel<string | number>()
 
-const isActive = computed(() => isFocused.value || inputValue.value !== '')
+if (props.default !== undefined && (inputValue.value === undefined || inputValue.value === '')) {
+    inputValue.value = props.default
+}
+
+const isActive = computed(() => isFocused.value || (inputValue.value !== '' && inputValue.value !== undefined))
 
 const emits = defineEmits<{
     (e: "focus"): void

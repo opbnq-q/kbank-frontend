@@ -1,6 +1,6 @@
 <template>
   <div style="height: calc(100dvh - 100px);">
-    <SharedStepNavigator>
+    <SharedStepNavigator :disable-next-button>
       <template #1>
         <div class="flex flex-col justify-between h-full">
           <EntityDebtCard w-full class="w-full" v-if="debt" :title="debt.title"
@@ -10,13 +10,20 @@
           <div class="flex flex-col gap-6">
             <SharedBaseInput v-model="title" :placeholder="'Title'"></SharedBaseInput>
             <SharedBaseInput v-model="description" :placeholder="'Description'"></SharedBaseInput>
-            <SharedBaseInput v-model="price" :placeholder="'Price'" type="number"></SharedBaseInput>
           </div>
         </div>
       </template>
       <template #2>
-        <div class="w-full h-full flex flex-col justify-end">
-          <SharedBaseButton @click="onSubmit">Submit</SharedBaseButton>
+        <div class="w-full h-full flex flex-col justify-between">
+          <EntityCurrencyCalc v-if="debt" :currency="debt.currency" v-model="price"></EntityCurrencyCalc>
+          <div class="w-full flex flex-col gap-6 justify-end">
+            <SharedBaseInput default="1" @input="(e: InputEvent) => {
+              const value = parseInt((e.target as HTMLInputElement).value ?? '0')
+              if (value) price = value
+            }"
+              :placeholder="'Price'" type="number"></SharedBaseInput>
+            <SharedBaseButton @click="onSubmit">Submit</SharedBaseButton>
+          </div>
         </div>
       </template>
     </SharedStepNavigator>
@@ -26,6 +33,12 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: ['auth-middleware']
+})
+
+const disableNextButton = computed(() => {
+  return (page: number) => (
+    page == 1 && (!title.value || !description.value) 
+  )
 })
 
 const route = useRoute()
@@ -46,7 +59,7 @@ onMounted(() => {
 
 const title = ref('')
 const description = ref('')
-const price = ref(0)
+const price = ref(1)
 
 const onSubmit = async () => {
   const result = await $ofetch<ServerResponseTemplate>(`/complete-requests`, {
