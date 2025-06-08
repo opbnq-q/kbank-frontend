@@ -57,5 +57,6 @@
         "createNewCurrency": "create new debt",
         "findDebtor": "Find a debtor",
         "price": "Цена"
-    }
+    },
+    "repayTheDebt": "Repay the debt"
 }

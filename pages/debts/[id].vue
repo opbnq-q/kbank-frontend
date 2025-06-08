@@ -13,6 +13,7 @@
     </div>
     <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
       :price="debt.price * debt.currency.standardUnits"></SharedProgressBar>
+    <SharedBaseButton @click="navigateTo(`/complete-requests/new?debtId=${debt.id}`)" class="w-full mt-2">{{ t('repayTheDebt') }}</SharedBaseButton>
     <section class="grid grid-cols-2 w-full gap-y-2 gap-x-4 text-sm my-4">
       <h1>{{ t('debtor') }}</h1>
       <h1>{{ t('lender') }}</h1>

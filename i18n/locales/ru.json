@@ -57,5 +57,6 @@
         "search": "Поиск",
         "findDebtor": "Кому вручить должок?",
         "price": "Price"
-    }
+    },
+    "repayTheDebt": "Вернуть долг"
 }
