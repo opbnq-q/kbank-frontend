@@ -7,7 +7,7 @@
                 <div v-for="debtor in filtered" v-show="createNewDebtSelectDebtor.search && filtered.length" class="cursor-pointer"
                     :class="{ 'p-[1px] bg-linear-to-br from-accent-green to-accent-blue rounded-xl': debtor.id == createNewDebtSelectDebtor.debtorId }">
                     <LazyEntityUserCard :class="{ 'border-none': debtor.id == createNewDebtSelectDebtor.debtorId }"
-                        @click="createNewDebtSelectDebtor.debtorId = debtor.id" find-go :key="debtor.email"
+                        @click="createNewDebtSelectDebtor.debtorId = debtor.id" hide-go :key="debtor.email"
                         :balance="debtor.balance" :id="debtor.id" :name="`${debtor.firstName} ${debtor.lastName}`">
                     </LazyEntityUserCard>
                 </div>

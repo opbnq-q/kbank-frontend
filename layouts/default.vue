@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col items-center h-full w-full px-5">
     <div class="max-w-7xl w-full">
-      <WidgetNav v-if="!isAuthRoute" class="sticky bg-primary-bg z-50" />
+      <ClientOnly>
+        <WidgetNav v-if="!hideNav" class="sticky bg-primary-bg z-50" />
+        <div v-else class="mb-4"></div>
+      </ClientOnly>
       <SharedErrorModal />
       <SharedLoadingModal />
       <div class="">
@@ -17,10 +20,18 @@
 <script lang="ts" setup>
 const route = useRoute()
 const { locale } = useI18n()
+const tokenManager = useTokenManager()
 
-const isAuthRoute = computed(() => {
-  if (route.path === '/auth') return true
-  return route.path === `/${locale.value}/auth`
+const hideNav = computed(() => {
+  const path = route.path
+  const currentLocale = locale.value
+  if (path === '/auth' || path === `/${currentLocale}/auth`) {
+    return true
+  }
+  if (path === '/leaderboard' || path === `/${currentLocale}/leaderboard`) {
+    return !tokenManager.get()
+  }
+  return false
 })
 
 const errorModal = useErrorModalStore()

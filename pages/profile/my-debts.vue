@@ -21,6 +21,7 @@ watch(windowScroll.y, () => {
   if (windowScroll.arrivedState.bottom && debtsTape.page < debtsTape.totalPages) {
     debtsTape.loadMyDebts()
   }
+
 })
 
 onMounted(debtsTape.loadMyDebts)

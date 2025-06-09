@@ -11,7 +11,6 @@
 <script setup lang="ts">
 import { useOwnedDebtsTapeStore, type MyOwnedDebtsTapeStoreState } from '../model/my-owned-debts-tape.store';
 
-
 const { mode } = defineProps<{
     mode: "my" | 'owned'
 }>()
