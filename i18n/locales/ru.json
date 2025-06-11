@@ -56,7 +56,7 @@
         "createNewCurrency": "создайте новую валюту",
         "search": "Поиск",
         "findDebtor": "Кому вручить должок?",
-        "price": "Price"
+        "price": "Цена"
     },
     "repayTheDebt": "Вернуть долг"
 }
