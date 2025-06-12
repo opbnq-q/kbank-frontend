@@ -56,7 +56,14 @@
         "search": "Search",
         "createNewCurrency": "create new debt",
         "findDebtor": "Find a debtor",
-        "price": "Price"
+        "price": "Price",
+        "submit": "Submit"
     },
-    "repayTheDebt": "Repay the debt"
+    "repayTheDebt": "Repay the debt",
+    "createNewCompleteRequest": {
+        "title": "Title",
+        "description": "Description",
+        "price": "Price",
+        "submit": "Submit"
+    }
 }

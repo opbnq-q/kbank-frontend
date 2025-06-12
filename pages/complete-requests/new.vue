@@ -8,21 +8,27 @@
             :name="`${debt.lender.firstName} ${debt.lender.lastName}`" :price="debt.price * debt.currency.standardUnits"
             :status="debt.status"></EntityDebtCard>
           <div class="flex flex-col gap-6">
-            <SharedBaseInput v-model="title" :placeholder="'Title'"></SharedBaseInput>
-            <SharedBaseInput v-model="description" :placeholder="'Description'"></SharedBaseInput>
+            <SharedBaseInput v-model="title" :placeholder="t('createNewCompleteRequest.title') + '*'"></SharedBaseInput>
+            <SharedBaseInput v-model="description" :placeholder="t('createNewCompleteRequest.description') + '*'">
+            </SharedBaseInput>
           </div>
         </div>
       </template>
       <template #2>
-        <div class="w-full h-full flex flex-col justify-between">
-          <EntityCurrencyCalc v-if="debt" :currency="debt.currency" v-model="price"></EntityCurrencyCalc>
+        <div class="w-full h-full flex flex-col justify-between" v-if="debt">
+          <div class="flex flex-col gap-4">
+            <SharedInfoCard>
+              <h1>{{ debt.price - debt.complete }} {{ debt.currency.title }} - {{ price }} {{ debt.currency.title }} =
+                {{ debt.price - price - debt.complete }} {{ debt.currency.title }}</h1>
+            </SharedInfoCard>
+            <EntityCurrencyCalc :currency="debt.currency" v-model="price"></EntityCurrencyCalc>
+          </div>
           <div class="w-full flex flex-col gap-6 justify-end">
-            <SharedBaseInput default="1" @input="(e: InputEvent) => {
+            <SharedBaseInput :model-value="price" @input="(e: InputEvent) => {
               const value = parseInt((e.target as HTMLInputElement).value ?? '0')
-              if (value) price = value
-            }"
-              :placeholder="'Price'" type="number"></SharedBaseInput>
-            <SharedBaseButton @click="onSubmit">Submit</SharedBaseButton>
+              if (value > 0) price = value
+            }" :placeholder="t('createNewCompleteRequest.price') + '*'" type="number"></SharedBaseInput>
+            <SharedBaseButton @click="onSubmit">{{ t('createNewCompleteRequest.submit') }}</SharedBaseButton>
           </div>
         </div>
       </template>
@@ -35,9 +41,11 @@ definePageMeta({
   middleware: ['auth-middleware']
 })
 
+const { t } = useI18n()
+
 const disableNextButton = computed(() => {
   return (page: number) => (
-    page == 1 && (!title.value || !description.value) 
+    page == 1 && (!title.value || !description.value)
   )
 })
 
@@ -62,6 +70,9 @@ const description = ref('')
 const price = ref(1)
 
 const onSubmit = async () => {
+  if (price.value < 0) {
+    return
+  }
   const result = await $ofetch<ServerResponseTemplate>(`/complete-requests`, {
     method: "POST",
     body: {
