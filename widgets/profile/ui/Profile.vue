@@ -12,7 +12,7 @@
             </SharedInfoCard>
         </div>
         <SharedInfoCard class="w-full" color="pink" to="/leaderboard">
-            Leaderboard
+            {{ t('leaderboard') }}
         </SharedInfoCard>
     </section>
 </template>

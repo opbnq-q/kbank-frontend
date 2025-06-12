@@ -67,5 +67,6 @@
         "description": "Description",
         "price": "Price",
         "submit": "Submit"
-    }
+    },
+    "leaderboard": "Leaderboard"
 }
