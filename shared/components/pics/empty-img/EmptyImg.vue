@@ -31,7 +31,7 @@ const [isToggled, toggle] = useToggle()
 let intervals: ReturnType<typeof setInterval>[] = []
 const hens = useState('hens', () => ['🐔', '🐓', '🐣', '🐤'])
 const shuffle = (array: string[]) => {
-  return array.sort(() => Math.random() - 0.4)
+  return array.sort(() => Math.random() - 0.6)
 }
 
 onMounted(() => {

@@ -57,7 +57,9 @@
         "search": "Поиск",
         "findDebtor": "Кому вручить должок?",
         "price": "Цена",
-        "submit": "Отправить"
+        "submit": "Отправить",
+        "debtor": "Должник",
+        "error": "Цена должна быть положительным числом"
     },
     "repayTheDebt": "Вернуть долг",
     "createNewCompleteRequest": {

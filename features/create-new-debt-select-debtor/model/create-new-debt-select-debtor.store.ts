@@ -1,6 +1,6 @@
 
 export interface CreateNewDebtSelectDebtorStoreState {
-    debtorId: number
+    debtor: null | FullUser
     debtors: FullUser[]
     search: string
     totalPages: number
@@ -10,7 +10,7 @@ export interface CreateNewDebtSelectDebtorStoreState {
 
 export const useCreateNewDebtSelectDebtorStore = defineStore('create-new-debt-select-debtor-state', {
     state: (): CreateNewDebtSelectDebtorStoreState => ({
-        debtorId: 0,
+        debtor: null,
         debtors: [],
         search: '',
         totalPages: 0,

@@ -57,7 +57,9 @@
         "createNewCurrency": "create new debt",
         "findDebtor": "Find a debtor",
         "price": "Price",
-        "submit": "Submit"
+        "submit": "Submit",
+        "debtor": "Debtor",
+        "error": "Price must be a positive number"
     },
     "repayTheDebt": "Repay the debt",
     "createNewCompleteRequest": {

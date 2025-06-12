@@ -10,10 +10,20 @@
       <FeatureCreateNewDebtSelectDebtor :profile-id />
     </template>
     <template #4>
-      <div class="w-full items-center justify-end gap-4 flex flex-col h-full">
-        <SharedBaseInput class="w-full" :placeholder="t('createNewDebt.price')" v-model="createNewDebtCurrency.price"
-          type="number"></SharedBaseInput>
-        <SharedBaseButton class="w-full" @click="create">Submit</SharedBaseButton>
+      <div class="w-full h-full flex flex-col justify-between">
+        <SharedInfoCard v-if="createNewDebtSelectDebtor.debtor && createNewDebtCurrency.currency">
+          <div class="flex flex-col gap-1">
+            <h1>{{ t('createNewDebt.title') }}: {{ createNewDebtTextForm.title }}</h1>
+            <h1 v-if="createNewDebtTextForm.description">{{ t('createNewDebt.description') }}: {{ createNewDebtTextForm.description }}</h1>
+            <h1>{{ t('createNewDebt.debtor') }}: {{ createNewDebtSelectDebtor.debtor.firstName }} {{ createNewDebtSelectDebtor.debtor.lastName }}</h1>
+            <h1>{{ t('createNewDebt.price') }}: {{ createNewDebtCurrency.price }} {{ createNewDebtCurrency.currency.title }} = {{ createNewDebtCurrency.price * createNewDebtCurrency.currency.standardUnits }} {{ t('standardUnit') }}</h1>
+          </div>
+        </SharedInfoCard>
+        <div class="justify-end gap-4 flex flex-col ">
+          <SharedBaseInput class="w-full" :error :placeholder="t('createNewDebt.price')"
+            v-model="createNewDebtCurrency.price" type="number"></SharedBaseInput>
+          <SharedBaseButton class="w-full" @click="create">{{ t('createNewDebt.submit') }}</SharedBaseButton>
+        </div>
       </div>
     </template>
   </SharedStepNavigator>
@@ -25,6 +35,8 @@ const createNewDebtCurrency = useCreateNewDebtCurrencyStore()
 const createNewDebtSelectDebtor = useCreateNewDebtSelectDebtorStore()
 const notifications = useNotificationsStore()
 
+
+const error = ref('')
 const { t } = useI18n()
 
 const scrollEnd = (page: number) => {
@@ -52,17 +64,21 @@ const disableNextButton = computed(() => {
   return (page: number) => {
     return (
       (!createNewDebtTextForm.title && page == 1) ||
-      (!createNewDebtCurrency.currencyId && page == 2) ||
-      (!createNewDebtSelectDebtor.debtorId && page == 3) ||
+      (!createNewDebtCurrency.currency?.id && page == 2) ||
+      (!createNewDebtSelectDebtor.debtor?.id && page == 3) ||
       (page == 4)
     )
   }
 })
 
 async function create() {
+  if (createNewDebtCurrency.price <= 0) {
+    error.value = t('createNewDebt.error')
+    return
+  }
   const result = await createNewDebt({
-    currencyId: createNewDebtCurrency.currencyId,
-    debtorId: createNewDebtSelectDebtor.debtorId,
+    currencyId: createNewDebtCurrency.currency!.id,
+    debtorId: createNewDebtSelectDebtor.debtor!.id,
     title: createNewDebtTextForm.title,
     description: createNewDebtTextForm.description,
     price: createNewDebtCurrency.price

@@ -1,5 +1,5 @@
 export interface CreateNewDebtCurrencyStoreState {
-    currencyId: number
+    currency: Currency | null
     currencies: Currency[],
     search: string
     totalPages: number
@@ -10,11 +10,11 @@ export interface CreateNewDebtCurrencyStoreState {
 
 export const useCreateNewDebtCurrencyStore = defineStore('create-new-debt-currency', {
     state: (): CreateNewDebtCurrencyStoreState => ({
-        currencyId: 0,
+        currency: null,
         currencies: [],
         totalPages: 0,
         search: '',
-        price: 0,
+        price: 1,
         page: 0,
         debounceTimeout: null
     }),
