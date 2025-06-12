@@ -3,14 +3,17 @@
         <SharedInfoCard class="w-full max-sm:h-24">
             {{ profileStore.balance }} {{ t('standardUnit') }}
         </SharedInfoCard>
-        <div class="flex w-full gap-5 max-sm:flex-col">
+        <div class="grid grid-cols-2 w-full gap-5 max-sm:flex-col">
             <SharedInfoCard class="w-full" color="blue" to="/profile/my-debts">
                 {{ t('yourDebts') }}
             </SharedInfoCard>
-            <SharedInfoCard class="w-full" color="green" to="profile/my-owned-debts">
+            <SharedInfoCard class="w-full" color="green" to="/profile/my-owned-debts">
                 {{ t('yourOwnedDebts') }}
             </SharedInfoCard>
         </div>
+        <SharedInfoCard class="w-full" color="pink" to="/leaderboard">
+            Leaderboard
+        </SharedInfoCard>
     </section>
 </template>
 
