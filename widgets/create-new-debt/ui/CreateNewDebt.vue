@@ -4,7 +4,7 @@
       <FeatureCreateNewDebtTextForm />
     </template>
     <template #2>
-      <FeatureCreateNewDebtCurrency />
+      <FeatureCreateNewDebtCurrency @create-new-currency="emits('createNewCurrency')" />
     </template>
     <template #3>
       <FeatureCreateNewDebtSelectDebtor :profile-id />
@@ -22,7 +22,7 @@
         <div class="justify-end gap-4 flex flex-col ">
           <SharedBaseInput class="w-full" :error :placeholder="t('createNewDebt.price')"
             v-model="createNewDebtCurrency.price" type="number"></SharedBaseInput>
-          <SharedBaseButton class="w-full" @click="create">{{ t('createNewDebt.submit') }}</SharedBaseButton>
+          <SharedBaseButton large class="w-full" @click="create">{{ t('createNewDebt.submit') }}</SharedBaseButton>
         </div>
       </div>
     </template>
@@ -34,7 +34,9 @@ const createNewDebtTextForm = useCreateNewDebtTextFormStore()
 const createNewDebtCurrency = useCreateNewDebtCurrencyStore()
 const createNewDebtSelectDebtor = useCreateNewDebtSelectDebtorStore()
 const notifications = useNotificationsStore()
-
+const emits = defineEmits<{
+  (e: 'createNewCurrency'): void
+}>()
 
 const error = ref('')
 const { t } = useI18n()
@@ -63,7 +65,7 @@ const scrollEndDebtors = () => {
 const disableNextButton = computed(() => {
   return (page: number) => {
     return (
-      (!createNewDebtTextForm.title && page == 1) ||
+      ((createNewDebtTextForm.title.length < 1 || createNewDebtTextForm.title.length > 500 || (createNewDebtTextForm.description ?? '').length > 500) && page == 1) ||
       (!createNewDebtCurrency.currency?.id && page == 2) ||
       (!createNewDebtSelectDebtor.debtor?.id && page == 3) ||
       (page == 4)

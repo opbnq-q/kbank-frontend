@@ -68,5 +68,16 @@
         "price": "Price",
         "submit": "Submit"
     },
-    "leaderboard": "Leaderboard"
+    "leaderboard": "Leaderboard",
+    "createNewCurrency": {
+        "submit": "Submit",
+        "title": "Title",
+        "description": "Description",
+        "standardUnits": "Standard Units",
+        "errors": {
+            "title": "Title must be 1-500 characters",
+            "description": "Description must be less than 500 characters",
+            "standardUnits": "Standard units must be at least 1"
+        }
+    }
 }

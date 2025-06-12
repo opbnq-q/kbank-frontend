@@ -28,7 +28,7 @@
               const value = parseInt((e.target as HTMLInputElement).value ?? '0')
               if (value > 0) price = value
             }" :placeholder="t('createNewCompleteRequest.price') + '*'" type="number"></SharedBaseInput>
-            <SharedBaseButton @click="onSubmit">{{ t('createNewCompleteRequest.submit') }}</SharedBaseButton>
+            <SharedBaseButton large @click="onSubmit">{{ t('createNewCompleteRequest.submit') }}</SharedBaseButton>
           </div>
         </div>
       </template>
@@ -45,7 +45,7 @@ const { t } = useI18n()
 
 const disableNextButton = computed(() => {
   return (page: number) => (
-    page == 1 && (!title.value || !description.value)
+    page == 1 && (title.value.length < 1 || title.value.length > 40 || description.value.length < 1 || description.value.length > 200)
   )
 })
 

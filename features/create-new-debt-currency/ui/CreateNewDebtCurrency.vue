@@ -3,7 +3,7 @@
         :placeholder="t('createNewDebt.search')" class="my-6"></SharedBaseInput>
     <p class="text-sm" v-show="!createNewDebtCurrency.search">{{
         t('createNewDebt.findOr')
-    }} <SharedInternalLink to="/currency/new">{{ t('createNewDebt.createNewCurrency') }}</SharedInternalLink>
+    }} <SharedInternalLink @click="emits('createNewCurrency')">{{ t('createNewDebt.createNewCurrency') }}</SharedInternalLink>
     </p>
     <SharedEmptyImg v-show="createNewDebtCurrency.search && !createNewDebtCurrency.currencies.length"
         message="not found" />
@@ -24,4 +24,7 @@
 const createNewDebtCurrency = useCreateNewDebtCurrencyStore()
 
 const { t } = useI18n()
+const emits = defineEmits<{
+    (e: 'createNewCurrency'): void
+}>()
 </script>
