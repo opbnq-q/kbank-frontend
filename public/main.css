@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-    --color-primary-bg: #ffffff;
-    --color-secondary-bg: #f4f4f4;
-    --color-primary-text: #000000;
-    --color-primary-border: black;
-    --color-primary-hover: rgb(228, 225, 225);
-    --color-primary-focus: rgb(206, 206, 206);
+    --color-primary-bg: #131313;
+    --color-secondary-bg: #191919;
+    --color-primary-text: #d9d9d9;
+    --color-primary-border: oklch(37.1% 0 0);
+    --color-primary-focus: oklch(27.4% 0.006 286.033);
+    --color-primary-hover: oklch(27.4% 0.006 286.033);
     --color-primary-link: #307cfc;
 
     --color-accent-green: #00E676;
@@ -16,26 +16,6 @@
     --color-accent-purple: #A020F0;
     --color-accent-red: #FF1744;
     --color-accent-pink: #FF2D87;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-primary-bg: #131313;
-        --color-secondary-bg: #191919;
-        --color-primary-text: #d9d9d9;
-        --color-primary-border: oklch(37.1% 0 0);
-        --color-primary-focus: oklch(27.4% 0.006 286.033);
-        --color-primary-hover: oklch(27.4% 0.006 286.033);
-        --color-primary-link: #307cfc;
-
-        --color-accent-green: #00E676;
-        --color-accent-blue: #2979FF;
-        --color-accent-yellow: #FFD600;
-        --color-accent-orange: #FF9100;
-        --color-accent-purple: #A020F0;
-        --color-accent-red: #FF1744;
-        --color-accent-pink: #FF2D87;
-    }
 }
 
 @theme {

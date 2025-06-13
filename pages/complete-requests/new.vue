@@ -45,7 +45,7 @@ const { t } = useI18n()
 
 const disableNextButton = computed(() => {
   return (page: number) => (
-    page == 1 && (title.value.length < 1 || title.value.length > 40 || description.value.length < 1 || description.value.length > 200)
+    page == 1 && (title.value.length < 1 || title.value.length > 40 || description.value.length < 1 || description.value.length > 200) || page == 2
   )
 })
 

@@ -2,9 +2,9 @@
     <div>
         <SharedBaseInput class="mt-6" :placeholder="t('createNewDebt.search')"
             v-model="createNewDebtSelectDebtor.search" @input="createNewDebtSelectDebtor.handleInput"></SharedBaseInput>
-        <ul class="mt-6 flex flex-col gap-4" v-show="filtered.length">
+        <ul class="mt-6 flex flex-col gap-4" v-show="filtered.length && createNewDebtSelectDebtor.search">
             <ClientOnly>
-                <div v-for="debtor in filtered" v-show="createNewDebtSelectDebtor.search && filtered.length" class="cursor-pointer"
+                <div v-for="debtor in filtered" class="cursor-pointer"
                     :class="{ 'p-[1px] bg-linear-to-br from-accent-green to-accent-blue rounded-xl': debtor.id == createNewDebtSelectDebtor.debtor?.id }">
                     <LazyEntityUserCard :class="{ 'border-none': debtor.id == createNewDebtSelectDebtor.debtor?.id }"
                         @click="createNewDebtSelectDebtor.debtor = debtor" hide-go :key="debtor.email"
@@ -16,7 +16,7 @@
         </ul>
         <SharedEmptyImg class="mt-6"
             v-show="createNewDebtSelectDebtor.search && !filtered.length" />
-        <p class="mt-4 text-sm" v-show="!createNewDebtSelectDebtor.search && !filtered.length">
+        <p class="text-sm mt-4" v-show="!createNewDebtSelectDebtor.search">
             {{ t('createNewDebt.findDebtor') }}</p>
     </div>
 </template>
