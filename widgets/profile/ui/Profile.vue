@@ -3,7 +3,7 @@
         <SharedInfoCard class="w-full max-sm:h-24">
             {{ profileStore.balance }} {{ t('standardUnit') }}
         </SharedInfoCard>
-        <div class="grid grid-cols-2 w-full gap-5 max-sm:flex-col">
+        <div class="grid grid-cols-2 w-full gap-5 max-sm:grid-cols-1">
             <SharedInfoCard class="w-full" color="blue" to="/profile/my-debts">
                 {{ t('yourDebts') }}
             </SharedInfoCard>

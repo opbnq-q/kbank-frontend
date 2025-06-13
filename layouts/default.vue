@@ -23,12 +23,12 @@ const { locale } = useI18n()
 const tokenManager = useTokenManager()
 
 const hideNav = computed(() => {
-  const path = route.path
+  const path = route.fullPath
   const currentLocale = locale.value
-  if (path === '/auth' || path === `/${currentLocale}/auth`) {
+  if (path.includes('/auth') || path.includes(`/${currentLocale}/auth`)) {
     return true
   }
-  if (path === '/leaderboard' || path === `/${currentLocale}/leaderboard`) {
+  if (path.includes(`/leaderboard`) || path.includes(`/${currentLocale}/leaderboard`)) {
     return !tokenManager.get()
   }
   return false

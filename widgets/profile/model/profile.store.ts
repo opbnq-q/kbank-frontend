@@ -24,7 +24,7 @@ export const useProfileStore = defineStore('my-profile', {
 
         async logout() {
             await tokenManager.remove()
-            navigateTo('/auth')
+            window.location.reload()
         },
 
         patchBalance(b: number) {
