@@ -13,6 +13,11 @@
 definePageMeta({
   middleware: 'auth-middleware'
 })
+
+useHead({
+  title: "Notifications"
+})
+
 const n = useNotificationsStore()
 const { t } = useI18n()
 </script>

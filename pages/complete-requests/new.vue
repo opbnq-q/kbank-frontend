@@ -41,6 +41,10 @@ definePageMeta({
   middleware: ['auth-middleware']
 })
 
+useHead({
+  title: "New Complete Request"
+})
+
 const { t } = useI18n()
 
 const disableNextButton = computed(() => {

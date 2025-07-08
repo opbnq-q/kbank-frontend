@@ -32,6 +32,10 @@ interface LeaderboardUser {
     lastName: string
 }
 
+useHead({
+    title: "Leaderboard"
+})
+
 const users = useState<LeaderboardUser[]>('leaderboard-users', () => [])
 
 const { public: { wsBase } } = useRuntimeConfig()

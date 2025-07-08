@@ -15,6 +15,10 @@ definePageMeta({
   middleware: ['auth-middleware']
 })
 
+useHead({
+  title: "My Debts"
+})
+
 const debtsTape = useDebtsTapeStore()
 const windowScroll = useWindowScroll()
 watch(windowScroll.y, () => {

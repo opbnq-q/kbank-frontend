@@ -17,6 +17,10 @@ definePageMeta({
   middleware: ['auth-middleware']
 })
 
+useHead({
+  title: "My Owned Debts"
+})
+
 const ownedDebtsTape = useOwnedDebtsTapeStore()
 const windowScroll = useWindowScroll()
 watch(windowScroll.y, () => {

@@ -72,6 +72,10 @@ const route = useRoute()
 const { $ofetch } = useNuxtApp()
 const id = parseInt(route.params.id as string)
 
+useHead({
+  title: debt.value?.title || "Debt"
+})
+
 onMounted(async () => {
   await profile.load()
   const result = await $ofetch<ServerResponseTemplate<Debt>>(`/debts/${id}`)
