@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     css: ["public/main.css"],
     components: [
         {
-            path: 'shared',
+            path: 'common',
             extensions: ['.vue'],
             prefix: 'Common',
             pathPrefix: false
@@ -59,11 +59,11 @@ export default defineNuxtConfig({
     imports: {
         autoImport: true,
         dirs: [
-            './shared/**/*.ts',
+            './common/**/*.ts',
             './features/**/*.ts',
             './widgets/**/*.ts',
             './entities/**/*.ts',
-            './shared/composables/*.ts'
+            './common/composables/*.ts'
         ]
     },
     runtimeConfig: {
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
     },
     pinia: {
         storesDirs: [
-            './shared/**/*.store.ts',
+            './common/**/*.store.ts',
             './features/**/*.store.ts',
             './widgets/**/*.store.ts',
             './entities/**/*.store.ts'
