@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
             :class="[{ 'scale-0': !show }, 'm-auto duration-100 border-[1px] rounded-xl border-primary-border px-5 py-4 bg-secondary-bg text-primary-text']">
             <div :class="['flex items-center gap-5', { 'justify-end': !header, 'justify-between': header }]">
                 <h1 class="text-lg font-medium" v-if="header">{{ header }}</h1>
-                <SharedCloseButton v-if="!hideCloseButton" @click="show = false"></SharedCloseButton>
+                <CommonCloseButton v-if="!hideCloseButton" @click="show = false"></CommonCloseButton>
             </div>
             <div class="my-2">
                 <slot></slot>

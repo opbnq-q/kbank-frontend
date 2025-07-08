@@ -1,7 +1,7 @@
 <template>
-  <SharedBaseModal class="z-50" v-model:show="errorModal.show" :header="t('error.header')">
+  <CommonBaseModal class="z-50" v-model:show="errorModal.show" :header="t('error.header')">
     <p>{{ errorModal.message }}</p>
-  </SharedBaseModal>
+  </CommonBaseModal>
 </template>
 
 <script lang="ts" setup>

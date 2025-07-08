@@ -1,7 +1,7 @@
 <template>
     <div>
-        <SharedBaseInput class="mt-6" :placeholder="t('createNewDebt.search')"
-            v-model="createNewDebtSelectDebtor.search" @input="createNewDebtSelectDebtor.handleInput"></SharedBaseInput>
+        <CommonBaseInput class="mt-6" :placeholder="t('createNewDebt.search')"
+            v-model="createNewDebtSelectDebtor.search" @input="createNewDebtSelectDebtor.handleInput"></CommonBaseInput>
         <ul class="mt-6 flex flex-col gap-4" v-show="filtered.length && createNewDebtSelectDebtor.search">
             <ClientOnly>
                 <div v-for="debtor in filtered" class="cursor-pointer"
@@ -14,7 +14,7 @@
             </ClientOnly>
 
         </ul>
-        <SharedEmptyImg class="mt-6"
+        <CommonEmptyImg class="mt-6"
             v-show="createNewDebtSelectDebtor.search && !filtered.length" />
         <p class="text-sm mt-4" v-show="!createNewDebtSelectDebtor.search">
             {{ t('createNewDebt.findDebtor') }}</p>

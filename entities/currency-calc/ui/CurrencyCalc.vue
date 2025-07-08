@@ -1,16 +1,16 @@
 <template>
-    <SharedInfoCard>
+    <CommonInfoCard>
         <h1 class="text-lg">{{ price }} {{ currency.title }}</h1>
         <h2>{{ price * currency.standardUnits }} {{ t('standardUnit') }}</h2>
         <div class="flex justify-between mt-4">
-            <SharedBaseButton large square @click="handlePlus">
+            <CommonBaseButton large square @click="handlePlus">
                 <Icon name="carbon:add" size="1.4rem" />
-            </SharedBaseButton>
-            <SharedBaseButton large square @click="handleMinus" :disabled="!(price - 1)">
+            </CommonBaseButton>
+            <CommonBaseButton large square @click="handleMinus" :disabled="!(price - 1)">
                 <Icon name="ix:minus" />
-            </SharedBaseButton>
+            </CommonBaseButton>
         </div>
-    </SharedInfoCard>
+    </CommonInfoCard>
 </template>
 
 <script setup lang="ts">

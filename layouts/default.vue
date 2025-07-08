@@ -5,8 +5,8 @@
         <WidgetNav v-if="!hideNav" class="sticky bg-primary-bg z-50" />
         <div v-else class="mb-4"></div>
       </ClientOnly>
-      <SharedErrorModal />
-      <SharedLoadingModal />
+      <CommonErrorModal />
+      <CommonLoadingModal />
       <div class="">
         <slot />
       </div>

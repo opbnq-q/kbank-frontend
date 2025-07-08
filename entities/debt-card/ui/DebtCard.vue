@@ -1,5 +1,5 @@
 <template>
-    <SharedInfoCard
+    <CommonInfoCard
         class="w-full relative gap-4 flex-col flex min-h-40"
         :class="{'max-w-80': !wFull}"
         >
@@ -7,12 +7,12 @@
             <h1 class="text-xl h-6 overflow-hidden text-ellipsis ">{{ props.title }}</h1>
             <h2 class="h-6 overflow-hidden text-ellipsis">{{ props.description }}</h2>
         </NuxtLink>
-        <SharedProgressBar :complete :price></SharedProgressBar>
+        <CommonProgressBar :complete :price></CommonProgressBar>
         <div class="flex items-center justify-between">
             <h3>{{ props.name }}</h3>
-            <SharedViewedStatus :status></SharedViewedStatus>
+            <CommonViewedStatus :status></CommonViewedStatus>
         </div>
-    </SharedInfoCard>
+    </CommonInfoCard>
 </template>
 
 <script setup lang="ts">

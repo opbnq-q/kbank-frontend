@@ -1,6 +1,6 @@
 <template>
     <div class="h-screen w-full items-center justify-center flex flex-col">
-        <SharedLogo class="mb-12"></SharedLogo>
+        <CommonLogo class="mb-12"></CommonLogo>
         <FeatureRegisterForm v-if="!loginMode" @bottom-button="changeLoginMode"></FeatureRegisterForm>
         <FeatureLoginForm v-else @bottom-button="changeLoginMode"></FeatureLoginForm>
     </div>

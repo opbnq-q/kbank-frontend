@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         {
             path: 'shared',
             extensions: ['.vue'],
-            prefix: 'Shared',
+            prefix: 'Common',
             pathPrefix: false
         },
         {

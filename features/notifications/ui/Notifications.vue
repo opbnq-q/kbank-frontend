@@ -4,8 +4,8 @@
             <motion.li layout :key="index" v-for="(n, index) in notificationsStore.notifications">
                 <EntityToast class="relative" @remove="notificationsStore.remove(n)">
                     <h1>{{ n.message }}</h1>
-                    <SharedInternalLink :to="n.link" v-if="n.link">{{ t('go') }}
-                    </SharedInternalLink>
+                    <CommonInternalLink :to="n.link" v-if="n.link">{{ t('go') }}
+                    </CommonInternalLink>
                 </EntityToast>
             </motion.li>
         </ul>

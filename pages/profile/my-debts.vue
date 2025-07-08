@@ -1,9 +1,9 @@
 <template>
   <div>
-    <SharedHeaderText>{{ t('yourDebts') }}</SharedHeaderText>
+    <CommonHeaderText>{{ t('yourDebts') }}</CommonHeaderText>
     <FeatureDebtsTape mode="my" v-if="debtsTape.debts.length"></FeatureDebtsTape>
-    <SharedEmptyImg v-else></SharedEmptyImg>
-    <SharedToUpButton v-if="debtsTape.page >= debtsTape.totalPages && debtsTape.debts.length > 5"></SharedToUpButton>
+    <CommonEmptyImg v-else></CommonEmptyImg>
+    <CommonToUpButton v-if="debtsTape.page >= debtsTape.totalPages && debtsTape.debts.length > 5"></CommonToUpButton>
   </div>
 </template>
 

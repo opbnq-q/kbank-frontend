@@ -1,17 +1,17 @@
 <template>
         <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="registerStore.submit(t)">
-            <SharedBaseInput label="email" type="email" :placeholder="t('register.email')" v-model="registerStore.email"
+            <CommonBaseInput label="email" type="email" :placeholder="t('register.email')" v-model="registerStore.email"
                 :error="registerStore.errors.email" />
-            <SharedBaseInput label="firstName" :placeholder="t('register.firstName')" v-model="registerStore.firstName"
+            <CommonBaseInput label="firstName" :placeholder="t('register.firstName')" v-model="registerStore.firstName"
                 :error="registerStore.errors.firstName" />
-            <SharedBaseInput label="lastName" :placeholder="t('register.lastName')" v-model="registerStore.lastName"
+            <CommonBaseInput label="lastName" :placeholder="t('register.lastName')" v-model="registerStore.lastName"
                 :error="registerStore.errors.lastName" />
-            <SharedBaseInput label="password" type="password" :placeholder="t('register.password')"
+            <CommonBaseInput label="password" type="password" :placeholder="t('register.password')"
                 v-model="registerStore.password" :error="registerStore.errors.password" />
-            <SharedBaseInput label="confirmPassword" type="password" :placeholder="t('register.confirmPassword')"
+            <CommonBaseInput label="confirmPassword" type="password" :placeholder="t('register.confirmPassword')"
                 v-model="registerStore.confirmPassword" :error="registerStore.errors.confirmPassword" />
-            <SharedBaseButton large type="submit">{{ t('register.submit') }}</SharedBaseButton>
-            <SharedInternalLink @click="emits('bottomButton')">{{ t('register.changeLoginMode') }}</SharedInternalLink>
+            <CommonBaseButton large type="submit">{{ t('register.submit') }}</CommonBaseButton>
+            <CommonInternalLink @click="emits('bottomButton')">{{ t('register.changeLoginMode') }}</CommonInternalLink>
         </form>
 </template>
 

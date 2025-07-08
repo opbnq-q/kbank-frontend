@@ -1,5 +1,5 @@
 <template>
-  <SharedStepNavigator :disable-next-button style="height: calc(100dvh - 100px);" @scroll-end="scrollEnd">
+  <CommonStepNavigator :disable-next-button style="height: calc(100dvh - 100px);" @scroll-end="scrollEnd">
     <template #1>
       <FeatureCreateNewDebtTextForm />
     </template>
@@ -11,22 +11,22 @@
     </template>
     <template #4>
       <div class="w-full h-full flex flex-col justify-between">
-        <SharedInfoCard v-if="createNewDebtSelectDebtor.debtor && createNewDebtCurrency.currency">
+        <CommonInfoCard v-if="createNewDebtSelectDebtor.debtor && createNewDebtCurrency.currency">
           <div class="flex flex-col gap-1">
             <h1>{{ t('createNewDebt.title') }}: {{ createNewDebtTextForm.title }}</h1>
             <h1 v-if="createNewDebtTextForm.description">{{ t('createNewDebt.description') }}: {{ createNewDebtTextForm.description }}</h1>
             <h1>{{ t('createNewDebt.debtor') }}: {{ createNewDebtSelectDebtor.debtor.firstName }} {{ createNewDebtSelectDebtor.debtor.lastName }}</h1>
             <h1>{{ t('createNewDebt.price') }}: {{ createNewDebtCurrency.price }} {{ createNewDebtCurrency.currency.title }} = {{ createNewDebtCurrency.price * createNewDebtCurrency.currency.standardUnits }} {{ t('standardUnit') }}</h1>
           </div>
-        </SharedInfoCard>
+        </CommonInfoCard>
         <div class="justify-end gap-4 flex flex-col ">
-          <SharedBaseInput class="w-full" :error :placeholder="t('createNewDebt.price')"
-            v-model="createNewDebtCurrency.price" type="number"></SharedBaseInput>
-          <SharedBaseButton large class="w-full" @click="create">{{ t('createNewDebt.submit') }}</SharedBaseButton>
+          <CommonBaseInput class="w-full" :error :placeholder="t('createNewDebt.price')"
+            v-model="createNewDebtCurrency.price" type="number"></CommonBaseInput>
+          <CommonBaseButton large class="w-full" @click="create">{{ t('createNewDebt.submit') }}</CommonBaseButton>
         </div>
       </div>
     </template>
-  </SharedStepNavigator>
+  </CommonStepNavigator>
 </template>
 
 <script lang="ts" setup>

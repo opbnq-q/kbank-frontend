@@ -2,9 +2,9 @@
   <div v-if="debt && debt.currency">
     <div :class="{ 'grid grid-cols-2 gap-4': acceptedCompletedRequests }" class="max-lg:flex max-lg:flex-col">
       <section>
-        <SharedHeaderText class="text-start flex gap-2 items-center">{{ debt.title }}
-          <SharedViewedStatus :tooltip="debt.status" class="text-[1rem] relative top-0.5" :status="debt.status"></SharedViewedStatus>
-        </SharedHeaderText>
+        <CommonHeaderText class="text-start flex gap-2 items-center">{{ debt.title }}
+          <CommonViewedStatus :tooltip="debt.status" class="text-[1rem] relative top-0.5" :status="debt.status"></CommonViewedStatus>
+        </CommonHeaderText>
         <h2 class="wrap-break-word text-lg font-semibold">{{ debt.price }} {{ debt.currency.title }}</h2>
         <h2 class="mb-8 wrap-break-word text-md opacity-80">{{ debt.description }}</h2>
       </section>
@@ -13,11 +13,11 @@
         class="flex w-full justify-center lg:justify-end max-lg:mb-4"
         v-if="debt.status == DebtStatus.ACCEPTED && acceptedCompletedRequests"></FeatureCompleteRequestsBar>
     </div>
-    <SharedProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
-      :price="debt.price * debt.currency.standardUnits"></SharedProgressBar>
-    <SharedBaseButton v-if="debt.status == DebtStatus.ACCEPTED && profile.id == debt.debtor.id"
+    <CommonProgressBar class="w-full" :complete="debt.complete * debt.currency.standardUnits"
+      :price="debt.price * debt.currency.standardUnits"></CommonProgressBar>
+    <CommonBaseButton v-if="debt.status == DebtStatus.ACCEPTED && profile.id == debt.debtor.id"
       @click="navigateTo(`/complete-requests/new?debtId=${debt.id}`)" class="w-full mt-2">{{ t('repayTheDebt') }}
-    </SharedBaseButton>
+    </CommonBaseButton>
     <section class="grid grid-cols-2 w-full gap-y-2 gap-x-4 text-sm my-4">
       <h1>{{ t('debtor') }}</h1>
       <h1>{{ t('lender') }}</h1>
@@ -37,15 +37,15 @@
       <h4 class="text-sm">{{ t('new') }}</h4>
       <FeatureCompleteRequestsTape @accept="updateProgressBar" mode="other" v-if="notViewedAndIgnoredRequests" :debt
         :profile-id="profile.id"></FeatureCompleteRequestsTape>
-      <SharedEmptyImg v-else />
+      <CommonEmptyImg v-else />
       <h4 class="text-sm">{{ t('accepted') }}</h4>
       <FeatureCompleteRequestsTape mode="accepted" v-if="acceptedCompletedRequests" :debt :profile-id="profile.id">
       </FeatureCompleteRequestsTape>
-      <SharedEmptyImg v-else />
+      <CommonEmptyImg v-else />
       <h4 class="text-sm">{{ t('denied') }}</h4>
       <FeatureCompleteRequestsTape mode="denied" v-if="deniedCompleteRequests" :debt :profile-id="profile.id">
       </FeatureCompleteRequestsTape>
-      <SharedEmptyImg v-else />
+      <CommonEmptyImg v-else />
     </section>
   </div>
 </template>

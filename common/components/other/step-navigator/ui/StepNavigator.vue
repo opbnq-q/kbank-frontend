@@ -5,11 +5,11 @@
     </section>
     <section class="w-full pt-4">
       <div class="w-full flex justify-between mb-2">
-        <SharedBaseButton @click="prevStep" square :disabled="p == 0"><Icon name="carbon:arrow-left"></Icon></SharedBaseButton>
-        <SharedBaseButton @click="nextStep" square :disabled="disableNextButton(p + 1) && p < count"><Icon name="carbon:arrow-right"></Icon></SharedBaseButton>
+        <CommonBaseButton @click="prevStep" square :disabled="p == 0"><Icon name="carbon:arrow-left"></Icon></CommonBaseButton>
+        <CommonBaseButton @click="nextStep" square :disabled="disableNextButton(p + 1) && p < count"><Icon name="carbon:arrow-right"></Icon></CommonBaseButton>
       </div>
       <span>
-        <SharedProgressBar :complete="p + 1" :price="count" hide-s-u></SharedProgressBar>
+        <CommonProgressBar :complete="p + 1" :price="count" hide-s-u></CommonProgressBar>
       </span>
     </section>
   </div>

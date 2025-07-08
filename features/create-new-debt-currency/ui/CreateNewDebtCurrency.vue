@@ -1,11 +1,11 @@
 <template>
-    <SharedBaseInput v-model="createNewDebtCurrency.search" @input="createNewDebtCurrency.handleInput"
-        :placeholder="t('createNewDebt.search')" class="my-6"></SharedBaseInput>
+    <CommonBaseInput v-model="createNewDebtCurrency.search" @input="createNewDebtCurrency.handleInput"
+        :placeholder="t('createNewDebt.search')" class="my-6"></CommonBaseInput>
     <p class="text-sm" v-show="!createNewDebtCurrency.search">{{
         t('createNewDebt.findOr')
-    }} <SharedInternalLink @click="emits('createNewCurrency')">{{ t('createNewDebt.createNewCurrency') }}</SharedInternalLink>
+    }} <CommonInternalLink @click="emits('createNewCurrency')">{{ t('createNewDebt.createNewCurrency') }}</CommonInternalLink>
     </p>
-    <SharedEmptyImg v-show="createNewDebtCurrency.search && !createNewDebtCurrency.currencies.length"
+    <CommonEmptyImg v-show="createNewDebtCurrency.search && !createNewDebtCurrency.currencies.length"
         message="not found" />
     <ul class="flex flex-col gap-4" v-show="createNewDebtCurrency.search && createNewDebtCurrency.currencies.length">
         <ClientOnly>

@@ -1,6 +1,6 @@
 <template>
   <div style="height: calc(100dvh - 100px);">
-    <SharedStepNavigator :disable-next-button>
+    <CommonStepNavigator :disable-next-button>
       <template #1>
         <div class="flex flex-col justify-between h-full">
           <EntityDebtCard w-full class="w-full" v-if="debt" :title="debt.title"
@@ -8,31 +8,31 @@
             :name="`${debt.lender.firstName} ${debt.lender.lastName}`" :price="debt.price * debt.currency.standardUnits"
             :status="debt.status"></EntityDebtCard>
           <div class="flex flex-col gap-6">
-            <SharedBaseInput v-model="title" :placeholder="t('createNewCompleteRequest.title') + '*'"></SharedBaseInput>
-            <SharedBaseInput v-model="description" :placeholder="t('createNewCompleteRequest.description') + '*'">
-            </SharedBaseInput>
+            <CommonBaseInput v-model="title" :placeholder="t('createNewCompleteRequest.title') + '*'"></CommonBaseInput>
+            <CommonBaseInput v-model="description" :placeholder="t('createNewCompleteRequest.description') + '*'">
+            </CommonBaseInput>
           </div>
         </div>
       </template>
       <template #2>
         <div class="w-full h-full flex flex-col justify-between" v-if="debt">
           <div class="flex flex-col gap-4">
-            <SharedInfoCard>
+            <CommonInfoCard>
               <h1>{{ debt.price - debt.complete }} {{ debt.currency.title }} - {{ price }} {{ debt.currency.title }} =
                 {{ debt.price - price - debt.complete }} {{ debt.currency.title }}</h1>
-            </SharedInfoCard>
+            </CommonInfoCard>
             <EntityCurrencyCalc :currency="debt.currency" v-model="price"></EntityCurrencyCalc>
           </div>
           <div class="w-full flex flex-col gap-6 justify-end">
-            <SharedBaseInput :model-value="price" @input="(e: InputEvent) => {
+            <CommonBaseInput :model-value="price" @input="(e: InputEvent) => {
               const value = parseInt((e.target as HTMLInputElement).value ?? '0')
               if (value > 0) price = value
-            }" :placeholder="t('createNewCompleteRequest.price') + '*'" type="number"></SharedBaseInput>
-            <SharedBaseButton large @click="onSubmit">{{ t('createNewCompleteRequest.submit') }}</SharedBaseButton>
+            }" :placeholder="t('createNewCompleteRequest.price') + '*'" type="number"></CommonBaseInput>
+            <CommonBaseButton large @click="onSubmit">{{ t('createNewCompleteRequest.submit') }}</CommonBaseButton>
           </div>
         </div>
       </template>
-    </SharedStepNavigator>
+    </CommonStepNavigator>
   </div>
 </template>
 

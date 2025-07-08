@@ -1,19 +1,19 @@
 <template>
     <section class="flex flex-col items-start justify-start gap-5">
-        <SharedInfoCard class="w-full max-sm:h-24">
+        <CommonInfoCard class="w-full max-sm:h-24">
             {{ profileStore.balance }} {{ t('standardUnit') }}
-        </SharedInfoCard>
+        </CommonInfoCard>
         <div class="grid grid-cols-2 w-full gap-5 max-sm:grid-cols-1">
-            <SharedInfoCard class="w-full" color="blue" to="/profile/my-debts">
+            <CommonInfoCard class="w-full" color="blue" to="/profile/my-debts">
                 {{ t('yourDebts') }}
-            </SharedInfoCard>
-            <SharedInfoCard class="w-full" color="green" to="/profile/my-owned-debts">
+            </CommonInfoCard>
+            <CommonInfoCard class="w-full" color="green" to="/profile/my-owned-debts">
                 {{ t('yourOwnedDebts') }}
-            </SharedInfoCard>
+            </CommonInfoCard>
         </div>
-        <SharedInfoCard class="w-full" color="pink" to="/leaderboard">
+        <CommonInfoCard class="w-full" color="pink" to="/leaderboard">
             {{ t('leaderboard') }}
-        </SharedInfoCard>
+        </CommonInfoCard>
     </section>
 </template>
 

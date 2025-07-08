@@ -1,15 +1,15 @@
 <template>
     <nav class="w-full h-18 flex items-center justify-between">
-        <SharedLogo width="100" @click="navigateTo('/')" class="cursor-pointer max-sm:hidden"></SharedLogo>
+        <CommonLogo width="100" @click="navigateTo('/')" class="cursor-pointer max-sm:hidden"></CommonLogo>
         <div class="flex items-center gap-6 max-sm:justify-between max-sm:w-full">
             <div class="w-20">
-                <SharedBaseButton back square v-if="$route.fullPath.length > 1" />
+                <CommonBaseButton back square v-if="$route.fullPath.length > 1" />
             </div>
             <FeatureLangSwitcher class="w-[100px]"></FeatureLangSwitcher>
             <div class="flex w-20 justify-between">
-                <SharedBaseButton square @click="profile.logout">
+                <CommonBaseButton square @click="profile.logout">
                     <Icon name="carbon:exit" />
-                </SharedBaseButton>
+                </CommonBaseButton>
                 <ClientOnly>
                     <FeatureBell></FeatureBell>
                 </ClientOnly>

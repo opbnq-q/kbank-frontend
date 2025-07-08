@@ -1,11 +1,11 @@
 <template>
         <form class="flex flex-col gap-6 w-full max-w-80" @submit.prevent="loginStore.submit(t)">
-        <SharedBaseInput label="email" type="email" :placeholder="t('login.email')" v-model="loginStore.email"
+        <CommonBaseInput label="email" type="email" :placeholder="t('login.email')" v-model="loginStore.email"
             :error="loginStore.errors.email" />
-        <SharedBaseInput label="password" type="password" :placeholder="t('login.password')"
+        <CommonBaseInput label="password" type="password" :placeholder="t('login.password')"
             v-model="loginStore.password" :error="loginStore.errors.password" />
-        <SharedBaseButton large type="submit">{{ t('login.submit') }}</SharedBaseButton>
-        <SharedInternalLink @click="emits('bottomButton')">{{ t('login.changeLoginMode') }}</SharedInternalLink>
+        <CommonBaseButton large type="submit">{{ t('login.submit') }}</CommonBaseButton>
+        <CommonInternalLink @click="emits('bottomButton')">{{ t('login.changeLoginMode') }}</CommonInternalLink>
     </form>
 </template>
 
